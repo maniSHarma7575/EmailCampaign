@@ -1,0 +1,3 @@
+/*
+CREATE TABLE `EmailCampaign`.`users` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `email` VARCHAR(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL , `name` VARCHAR(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL , `password` VARCHAR(255) NOT NULL , `oauth_provider` VARCHAR(15) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL , `oauth_uid` VARCHAR(25) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL , `email_verified_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`), UNIQUE `emailindex` (`email`)) ENGINE = InnoDB CHARSET=utf32 COLLATE utf32_unicode_ci;
+*/
