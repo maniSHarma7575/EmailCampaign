@@ -43,12 +43,17 @@ class Model
     {
         $resultQuery=$this->_db->findFirst($this->_table,$params);
         $result=new $this->_modelName($this->_table);
-        $result->populateObjData($resultQuery);
+        if($resultQuery)
+        {
+            $result->populateObjData($resultQuery);
+        }
+        
         return $result;
 
     }
     public function save()
     {
+        //dnd($this->_columnsName);
         $fields=[];
         foreach($this->_columnsName as $column)
         {
@@ -69,6 +74,7 @@ class Model
     }
     public function populateObjData($result)
     {
+        
         foreach($result as $key=> $value)
         {
             $this->$key=$value;
@@ -101,18 +107,31 @@ class Model
     }
     public function assign($params)
     {
+        $fields=[];
         if(!empty($params))
         {
+            
             foreach($params as $key=>$val)
             {
                 if(in_array($key,$this->_columnsName))
                 {
                     $this->key=sanitize($val);
+                    $fields[$key]=sanitize($val);
+
                 }
             }
-            return true;
+            return $fields;
         }
-        return false;
+        return $fields;
+    }
+    public function userExists($params=[])
+    {
+        return $this->_db->_read($this->_table,$params);
+    }
+    public function updateGoogleUser($params)
+    {
+        $query = "UPDATE ".$this->_table." SET email = '".$params['email']."', name = '".$params['name']."' WHERE oauth_provider = '".$params['oauth_provider']."' AND oauth_uid = '".$params['oauth_uid']."'";
+        $update = $this->_db->query($query);
     }
 
 }

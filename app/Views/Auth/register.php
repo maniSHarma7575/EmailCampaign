@@ -30,8 +30,7 @@ $base = "/PHPLearning/public/Login/";
     <link rel="stylesheet" type="text/css" href="<?= $base ?>css/util.css">
     <link rel="stylesheet" type="text/css" href="<?= $base ?>css/main.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -41,44 +40,46 @@ $base = "/PHPLearning/public/Login/";
                 <span class="login100-form-title p-b-30">
                     Create your free account today!
                 </span>
-                <form> 
-
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                        </div>
-                        <input name="" class="form-control" placeholder="Organization" type="text" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                        </div>
-                        <input name="" class="form-control" placeholder="Username" type="text" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
+                <form method="post" action="">
+                <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                         </div>
-                        <input name="" class="form-control" placeholder="Email" type="email" required>
+                        <input class="form-control" id='email' name='email' placeholder="email" type="email" value="<?= $this->post['email'] ?>" required>
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input class="form-control" id='name' name='name' placeholder="Username" type="text" value="<?= $this->post['name'] ?>" required>
                     </div> <!-- form-group// -->
 
+                   
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <input class="form-control" placeholder="Create password" type="password" required>
+                        <input class="form-control" id='password' name='password' placeholder="password" type="password" value="<?= $this->post['password'] ?>" required>
                     </div> <!-- form-group// -->
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <input class="form-control" placeholder="Confirm password" type="password" required>
+                        <input class="form-control" id='confirm' name='confirm' placeholder="Confirm password" type="password" value="<?= $this->post['confirm'] ?>" required>
                     </div> <!-- form-group// -->
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
                     </div> <!-- form-group// -->
-                    <p class="text-center">Have an account? <a href="">Log In</a> </p>
+
                 </form>
+                <p class="text-center">Have an account? <a href="<?=PROOT?>register/login">Log In</a> </p>
+                <?php
+                //echo $this->displayErrors;
+                if (!empty($this->displayErrors)) {
+                    echo '<div class="alert alert-warning" style="height:45px" role="alert">';
+                    echo $this->displayErrors;
+                    echo '</div>';
+                } ?>
                 <div class="txt1 text-center p-b-10">
                     <span>
                         Or
@@ -87,8 +88,7 @@ $base = "/PHPLearning/public/Login/";
 
                 <div class="text-center">
                     <a class="btn btn-outline-dark" href="/users/googleauth" role="button" style="text-transform:none">
-                        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                         SignUp with Google
                     </a>
                 </div>
@@ -117,8 +117,7 @@ $base = "/PHPLearning/public/Login/";
     <script src="<?= $base ?>js/main.js"></script>
 
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 

@@ -43,16 +43,16 @@ crossorigin="anonymous">
 					<span class="login100-form-title p-b-10">
 						Login
 					</span>
-
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is required">
+					
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Useremail is required">
 						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="email" placeholder="Type your email" id="email">
+						<input class="input100 has-error" type="text" name="email" placeholder="Type your email" id="email">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Type your password" id="password">
+						<input class="input100 has-error" type="password" name="password" placeholder="Type your password" id="password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<div class="row p-t-8 p-b-31"">
@@ -67,6 +67,17 @@ crossorigin="anonymous">
 						</a>
 					</div>
 					</div>
+					
+					<?php 
+					//echo $this->displayErrors;
+					if(!empty($this->displayErrors))
+					{
+						echo '<div class="alert alert-warning" style="height:45px" role="alert">';
+						echo $this->displayErrors;
+						echo '</div>';
+
+					} ?>
+					
 					
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
@@ -88,7 +99,7 @@ crossorigin="anonymous">
 					</div>
 
 					<div class="text-center">
-						  <a class="btn btn-outline-dark" href="/users/googleauth" role="button" style="text-transform:none">
+						  <a class="btn btn-outline-dark" href="<?=PROOT.filter_var($this->authUrl, FILTER_SANITIZE_URL)?>" role="button" style="text-transform:none">
 							<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
 							Login with Google
 						  </a>

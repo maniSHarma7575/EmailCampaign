@@ -18,13 +18,36 @@ class Router
 
         //params
         $querey_params = $url;
-        var_dump($querey_params);
+        //var_dump($querey_params);
         $dispatch = new $controller($controller_name, $action_name);
        // var_dump($dispatch);
         if (method_exists($controller, $action)) {
             call_user_func([$dispatch, $action], $querey_params);
         } else {
+            if($url[1]=="accounts.google.com")
+            {
+             echo "hello";   
+            }
             die("No Controller exists for " . $controller_name);
+        }
+    }
+    public static function redirect($location)
+    {
+        if(!headers_sent())
+        {
+            header('Location: '.PROOT.$location);
+            exit();
+            
+        }
+        else
+        {
+            //Javascript redirect function
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="'.PROOT.$location.'";';
+            echo '</script>';
+            echo '<noscript>';
+            echo '<meta http-equiv="refresh" content="0;url='.$location.'"/>';
+            echo '</noscript>';
         }
     }
 }

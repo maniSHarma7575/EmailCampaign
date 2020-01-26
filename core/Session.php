@@ -23,7 +23,7 @@ class Session
     public static function uagent_no_version()
     {
         $uagent=$_SERVER['HTTP_USER_AGENT'];
-        echo $uagent;
+        //echo $uagent;
         $rgex='/\/[a-zA-Z0-9.]+/';
         $newString=preg_replace($rgex,"",$uagent);
         return $newString;

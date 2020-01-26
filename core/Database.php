@@ -57,6 +57,7 @@ class Database
         $fieldString = rtrim($fieldString, ',');
         $valueString = rtrim($valueString, ',');
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
+        
         if (!$this->query($sql, $values)->error()) {
             return true;
         }
@@ -108,7 +109,7 @@ class Database
         return $this->query("SHOW COLUMNS FROM {$table}")->results();
     }
 
-    protected function _read($table, $params = [])
+    public function _read($table, $params = [])
     {
         $conditionString = '';
         $bind = '';
@@ -146,7 +147,7 @@ class Database
         }
 
         $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-        echo $sql;
+        //echo $sql;
         if ($this->query($sql, $bind)) {
             if (!count($this->_result)) return false;
             return true;

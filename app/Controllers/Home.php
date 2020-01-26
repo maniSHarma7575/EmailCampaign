@@ -7,21 +7,49 @@ class Home extends Controller
     }
     public function indexAction()
     {
-       /* $db=DATABASE::getInstance();
-        $fields=[
-            'name' => 'mani',
-            'password' =>'mamamaapa'
+     /* $db=Database::getInstance();
+      $fields=[
+        'conditions'=>'oauth_provider = ? AND oauth_uid = ?',
+        'bind'=>['google','kkdkdkdkoeoe93903jd'],
+      ];
+      $usersQ=$db->_read('users',$fields);
+      dnd($usersQ);
+      */
+      /*$db=Database::getInstance();
+      $query = "UPDATE ".'users'." SET email = '".'sharmamannu@gmail.com'."', name = '".'sharmamannu'."' WHERE oauth_provider = '".'google'."' AND oauth_uid = '".'kkdkdkdkoeoe93903jd'."'";
+                $update = $db->query($query);
+                dnd($update);
+      */
+     /* 
+      $fields=[
+        'email'=>'sharma.mani@yahoo.com',
+        'name'=>'mani'.' '.'sharma',
+        'oauth_provider'=>'google',
+        'oauth_uid'=>'lkjahhjaakkjj'
+
+    ];
+      $db=Database::getInstance();
+      $quers=$db->insert('users',$fields);
+      dnd($quers);
+      */
 
 
-        ];
-       /* $usersQ=$db->insert('users',$fields);
+       // $pass=password_hash("manishsharma",PASSWORD_BCRYPT);
+       // $db=DATABASE::getInstance();
+       /* $fields=[
+            'name' => 'mani'
+        ];*/
+       // $fields=['user_id'=>1,'session'=>'maaoann8eue92bd2','user_agent'=>'mozilla google safari'];
+        //$fields['password']=$pass;
+      // $usersQ=$db->insert('user_sessions',$fields);
+        //dnd($usersQ);
+        
+        /*$sql="SELECT * FROM users";
+       $usersQ=$db->query($sql);
+        dnd($usersQ);*/
+       /* $usersQ=$db->update('users',4,$fields);
         dnd($usersQ);
         */
-        /*$sql="SELECT * FROM users";
-        $usersQ=$db->query($sql);
-        dnd($usersQ);*/
-       /* $usersQ=$db->update('users',2,$fields);
-        dnd($usersQ);*/
       /*  $usersQ=$db->delete('users','2');
         dnd($usersQ);*/
       /*  $sql="SELECT * FROM users ORDER by name,email";
@@ -43,7 +71,7 @@ class Home extends Controller
         ]);
         dnd($usersQ);
         */
-        echo Session::uagent_no_version();
+      //  dnd($_SESSION);
 
         $this->view->render('Home/index');
     }
