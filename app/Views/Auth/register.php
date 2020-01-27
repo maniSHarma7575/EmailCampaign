@@ -72,7 +72,7 @@ $base = "/PHPLearning/public/Login/";
                     </div> <!-- form-group// -->
 
                 </form>
-                <p class="text-center">Have an account? <a href="<?=PROOT?>register/login">Log In</a> </p>
+                <p class="text-center">Have an account? <a href="<?=PROOT?>user/login">Log In</a> </p>
                 <?php
                 //echo $this->displayErrors;
                 if (!empty($this->displayErrors)) {

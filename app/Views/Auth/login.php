@@ -1,5 +1,5 @@
 <?php
-	$base="/EmailCampaign/public/login/";
+	$base=PROOT."public/login/";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +99,7 @@ crossorigin="anonymous">
 					</div>
 
 					<div class="text-center">
-						  <a class="btn btn-outline-dark" href="<?=PROOT.filter_var($this->authUrl, FILTER_SANITIZE_URL)?>" role="button" style="text-transform:none">
+						  <a class="btn btn-outline-dark" href="<?=filter_var($this->authUrl, FILTER_SANITIZE_URL)?>" role="button" style="text-transform:none">
 							<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
 							Login with Google
 						  </a>

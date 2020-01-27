@@ -19,4 +19,4 @@ define('REMEMBER_ME_COOKIE_EXPIRY',304800);
 // Google API configuration
 define('GOOGLE_CLIENT_ID', '1090694937783-84ii1kiifhapjrfn4ski3s6q4dn97ds3.apps.googleusercontent.com');
 define('GOOGLE_CLIENT_SECRET', '-HXWJ0aS0q-CDRD88_08hnjI');
-define('GOOGLE_REDIRECT_URL', 'http://localhost/GmailLogin/index.php');
+define('GOOGLE_REDIRECT_URL', 'http://localhost/EmailCampaign/user/login');

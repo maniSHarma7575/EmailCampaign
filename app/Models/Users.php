@@ -44,7 +44,6 @@ class Users extends Model
     }
     public function login($rememberMe=false)
     {
-        
         Session::set($this->_sessionName,$this->id);
         if($rememberMe)
         {
@@ -109,7 +108,7 @@ class Users extends Model
         {
             $fields=[
                 'email'=>$userData['email'],
-                'name'=>$userData['first_name'].' '.$userData['last_name'],
+                'name'=>$userData['name'],
                 'oauth_provider'=>$userData['oauth_provider'],
                 'oauth_uid'=>$userData['oauth_uid']
 
