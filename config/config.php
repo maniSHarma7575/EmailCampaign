@@ -1,7 +1,7 @@
 <?php
 define('DEBUG',true);
 define('DEFAULT_CONTROLLER','Home');
-define('DEFAULT_LAYOUT','default');
+define('DEFAULT_LAYOUT','defaultLayout');
 define('PROOT','/EmailCampaign/'); //Later we will set this to '/' when working for live server
 define('SITE_TITLE','Email Campaign');
 

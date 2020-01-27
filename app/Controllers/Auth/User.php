@@ -6,12 +6,17 @@ class User extends Controller
     {
         parent::__construct($controller, $action);
         $this->load_model('Users');
+        $this->view->setLayout('registrationLayout');
         //$this->view->setLayout('default');
     }
     public function loginAction()
     {
        
         $validation = new Validate();
+        if(Session::exists(CURRENT_USER_SESSION_NAME))
+        {
+            Router::redirect('Dashboard/');
+        }
         if ($_POST) {
             
             $validation = $validation->check($_POST, [
@@ -31,7 +36,7 @@ class User extends Controller
                 if ($user && password_verify(Input::get('password'), $user->password)) {
                     $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
                     $user->login($remember);
-                    Router::redirect('');
+                    Router::redirect('Dashboard/');
                 } else {
                     $validation->addError("Email or Password incorrect");
                 }
@@ -86,7 +91,7 @@ class User extends Controller
             } else {
                 $user = $this->UsersModel->findByEmail($gpUserData['email']);
                 $user->login(false);
-                Router::redirect('');
+                Router::redirect('Dashboard/');
             }
         } else {
             // Get login url
