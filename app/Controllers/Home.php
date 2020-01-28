@@ -7,8 +7,12 @@ class Home extends Controller
     }
     public function indexAction()
     {
-
       
+      $m=Mail::getInstance();
+      $subject="Email";
+      $body="test";
+      $q=$m->send($subject,$body);
+      dnd($q);
       
      /* $db=Database::getInstance();
       $fields=[

@@ -12,4 +12,8 @@ spl_autoload_register(function ($className) {
     elseif (file_exists(ROOT.DS.'core'.DS.$className.'.php')) { 
         require_once(ROOT.DS.'core'.DS.$className.'.php'); 
     }
+    elseif(file_exists(ROOT.DS.'api'.DS.'PHPMailer'.DS.'src'.DS.$className.'.php'))
+    {
+        require_once(ROOT.DS.'api'.DS.'PHPMailer'.DS.'src'.DS.$className.'.php');
+    }
 });

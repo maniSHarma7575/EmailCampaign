@@ -20,3 +20,19 @@ define('REMEMBER_ME_COOKIE_EXPIRY',304800);
 define('GOOGLE_CLIENT_ID', '1090694937783-84ii1kiifhapjrfn4ski3s6q4dn97ds3.apps.googleusercontent.com');
 define('GOOGLE_CLIENT_SECRET', '-HXWJ0aS0q-CDRD88_08hnjI');
 define('GOOGLE_REDIRECT_URL', 'http://localhost/EmailCampaign/user/login');
+
+//smtp Amazon SES
+/*
+define('SMTP_HOST','email-smtp.ap-south-1.amazonaws.com');
+define('SMTPUSERNAME','AKIA6B5RCAR6CRP7TQCI');
+define('SMTPPASSWORD','BEe7hlrvq1pl9NaDImsjZsp2jDbz31aIOjN/etDa/KKws');
+define('SMTPSECURE','tls');
+define('SMTPPORT',587);
+*/
+
+//smtp Gmail
+define('SMTP_HOST','smtp.gmail.com');
+define('SMTPUSERNAME','sharma.manish7575@gmail.com');
+define('SMTPPASSWORD','9411561648');
+define('SMTPSECURE','ssl');
+define('SMTPPORT',465);
