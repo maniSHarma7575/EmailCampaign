@@ -33,6 +33,10 @@ class Users extends Model
     {
         return $this->findFirst(['conditions'=>'email= ?','bind'=>[$email]]);
     }
+    public function findById($id)
+    {
+        return $this->findFirst(['conditions'=>'id= ?','bind'=>[$id]]);
+    }
     public static function currentLoggedInUser()
     {
         if(!isset(self::$currentLoggedInUsers) && Session::exists(CURRENT_USER_SESSION_NAME))

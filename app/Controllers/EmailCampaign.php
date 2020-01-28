@@ -1,5 +1,5 @@
 <?php
-class Campaign extends Controller{
+class EmailCampaign extends Controller{
     public function __construct($controller,$action)
     {
         parent::__construct($controller,$action);
@@ -7,10 +7,11 @@ class Campaign extends Controller{
         $this->load_model('Campaigns');
         
     }
-    public function indexAction()
+    public function index()
     {
         $campaigns=$this->CampaignsModel->findAll(['order' => 'sent_at']);
         $this->view->campaigns=$campaigns;
+        dnd($this->view->campaigns);
         $this->view->render('Campaigns/index');
     }
 }

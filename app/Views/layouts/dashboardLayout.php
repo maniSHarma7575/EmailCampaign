@@ -16,8 +16,8 @@ $base = PROOT . "public/login/";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= $basee ?>css/style.css">
 
-     <!--===============================================================================================-->
-     <link rel="icon" type="image/png" href="<?= $base ?>images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="<?= $base ?>images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= $base ?>vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -50,18 +50,18 @@ $base = PROOT . "public/login/";
 
         <nav id="sidebar">
             <div class="p-4 pt-5">
-             <?php /*   <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(<?=$basee?>images/logoa.jpg);"></a>*/?>
-    
+                <?php /*   <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(<?=$basee?>images/logoa.jpg);"></a>*/ ?>
+
                 <ul class="list-unstyled components mb-5">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="<?=PROOT?>dashboard/">Home</a>
                     </li>
                     <li>
                         <a href="#">Email Campaigns</a>
                     </li>
 
                     <li>
-                        <a href="#">Subscribers</a>
+                        <a href="<?= PROOT ?>subscriber/">Subscribers</a>
                     </li>
                     <li>
                         <a href="<?= PROOT ?>user/logout">Logout</a>
@@ -101,10 +101,10 @@ $base = PROOT . "public/login/";
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item mr-xl-2">
-                            <a class="btn btn-success" style="color: white" href=''><i class="fa fa-envelope"></i>Previous Campaigns</a>
+                                <a class="btn btn-success" style="color: white" href='<?= PROOT ?>campaign/'><i class="fa fa-envelope"></i>Previous Campaigns</a>
                             </li>
                             <li class="nav-item ">
-                               
+
                                 <a class="btn btn-danger" style="color: white" href='<?= PROOT ?>subscriber/add'><i class="fa fa-plus"></i> Add Subscriber</a>
                             </li>
                             <li class="nav-item">
@@ -114,18 +114,20 @@ $base = PROOT . "public/login/";
                     </div>
                 </div>
             </nav>
-            <?= $this->content('body');?>
+            <?= $this->content('body'); ?>
+
+            
         </div>
     </div>
-      
-  </script>
+
+    </script>
     <script src="<?= $basee ?>js/jquery.min.js"></script>
     <script src="<?= $basee ?>js/popper.js"></script>
     <script src="<?= $basee ?>js/bootstrap.min.js"></script>
     <script src="<?= $basee ?>js/main.js"></script>
 
-      <!--===============================================================================================-->
-      <script src="<?= $base ?>vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= $base ?>vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
     <script src="<?= $base ?>vendor/animsition/js/animsition.min.js"></script>
     <!--===============================================================================================-->

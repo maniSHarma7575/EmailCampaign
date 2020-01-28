@@ -7,6 +7,8 @@ class Home extends Controller
     }
     public function indexAction()
     {
+
+      
       
      /* $db=Database::getInstance();
       $fields=[

@@ -25,8 +25,9 @@ class Database
         if ($this->_query = $this->_pdo->prepare($sql)); {
             
             $x = 1;
-            if (count($params)) {
-                
+           // dnd($params);
+           // dnd(count($params));
+            if (!empty($params)) {
                 foreach ($params as $param) {
                     $this->_query->bindValue($x, $param);
                     $x++;
@@ -111,6 +112,8 @@ class Database
 
     public function _read($table, $params = [])
     {
+        
+        
         $conditionString = '';
         $bind = '';
         $order = '';
@@ -147,7 +150,8 @@ class Database
         }
 
         $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-        //echo $sql;
+        
+        
         if ($this->query($sql, $bind)) {
             if (!count($this->_result)) return false;
             return true;

@@ -8,8 +8,11 @@ class Dashboard extends Controller
     }
     public function indexAction()
     {
+       
+        
         if(!Session::exists(CURRENT_USER_SESSION_NAME))
         {
+            
             Router::redirect('user/login');
         }
         $this->view->render('Dashboard/app');

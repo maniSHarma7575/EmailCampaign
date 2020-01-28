@@ -4,7 +4,7 @@ class Subscribers extends Model{
     {
         $table='subscribers';
         parent::__construct($table);
-        if($subsciber!='')
+        if($subsciber!='' && $subsciber!='subscribers')
         {
             if(is_int($subsciber))
             {
@@ -28,6 +28,10 @@ class Subscribers extends Model{
             $par=$this->assign($params);
             $this->insert($par);
         
+    }
+    public function findAll($params=[])
+    {
+        return $this->find($params);
     }
 
 }
