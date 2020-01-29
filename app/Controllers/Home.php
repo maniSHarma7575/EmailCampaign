@@ -7,12 +7,15 @@ class Home extends Controller
     }
     public function indexAction()
     {
+
       
-      $m=Mail::getInstance();
-      $subject="Email";
-      $body="test";
+      dnd($_SESSION);
+     /* $m=Mail::getInstance();
+      $subject="Testing Email for Campaign";
+      $body="Hello buddy how are you?";
       $q=$m->send($subject,$body);
       dnd($q);
+      */
       
      /* $db=Database::getInstance();
       $fields=[

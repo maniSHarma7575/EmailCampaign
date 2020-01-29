@@ -36,6 +36,7 @@ class User extends Controller
                 if ($user && password_verify(Input::get('password'), $user->password)) {
                     $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
                     $user->login($remember);
+                    Session::set('email',$_POST['email']);
                     Router::redirect('Dashboard/');
                 } else {
                     $validation->addError("Email or Password incorrect");
@@ -91,6 +92,7 @@ class User extends Controller
             } else {
                 $user = $this->UsersModel->findByEmail($gpUserData['email']);
                 $user->login(false);
+                Session::set('email',$gpUserData['email']);
                 Router::redirect('Dashboard/');
             }
         } else {
@@ -107,7 +109,8 @@ class User extends Controller
         if(isset($_SESSION['token']))
         {
             unset($_SESSION['token']);
-            unset($_SESSION['userData']);
+            unset($_SESSION['email']);
+
             
             // Reset OAuth access token
             //$this->gclient->revokeToken();

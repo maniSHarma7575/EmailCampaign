@@ -10,11 +10,12 @@ class Dashboard extends Controller
     {
        
         
-        if(!Session::exists(CURRENT_USER_SESSION_NAME))
+       /* if(!Session::exists(CURRENT_USER_SESSION_NAME))
         {
             
             Router::redirect('user/login');
         }
+        */
         $this->view->render('Dashboard/app');
     }
 }

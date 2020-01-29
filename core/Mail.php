@@ -2,40 +2,44 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require ROOT.DS.'api/PHPMailer/src/Exception.php';
-require ROOT.DS.'api/PHPMailer/src/PHPMailer.php';
-require ROOT.DS.'api/PHPMailer/src/SMTP.php';
+
+require ROOT . DS . 'api/PHPMailer/src/Exception.php';
+require ROOT . DS . 'api/PHPMailer/src/PHPMailer.php';
+require ROOT . DS . 'api/PHPMailer/src/SMTP.php';
 
 class Mail
 {
     private static $_instance = null;
     private $mail;
-    public function __construct()
+    public function __construct($smtpHost, $smtpUsername, $smtpPassword, $smtpSecure, $smtpPort)
     {
         $this->mail = new PHPMailer;
         $this->mail->isSMTP();
-         
-        $this->mail->Host     = SMTP_HOST;
+
+        $this->mail->Host     = $smtpHost;
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = SMTPUSERNAME;
-        $this->mail->Password = SMTPPASSWORD;
-        $this->mail->SMTPSecure = SMTPSECURE;
-        $this->mail->Port     = SMTPPORT;
+        $this->mail->Username = $smtpUsername;
+        $this->mail->Password = $smtpPassword;
+        $this->mail->SMTPSecure = $smtpSecure;
+        $this->mail->Port     = $smtpPort;
     }
-    public static function getInstance()
+    public static function getInstance($smtpHost, $smtpUsername, $smtpPassword, $smtpSecure, $smtpPort)
     {
         if (!isset(self::$_instance)) {
-            self::$_instance = new Mail();
+            self::$_instance = new Mail($smtpHost, $smtpUsername, $smtpPassword, $smtpSecure, $smtpPort);
         }
         return self::$_instance;
     }
-    public function send($subject, $body)
+    public function send($subscriber = [], $email, $name, $subject, $body)
     {
-        $this->mail->setFrom('sharma.manish7575@gmail.com', 'ColoredCow EmailCampaigns');
-        $this->mail->addReplyTo('sharma.manish7575@gmail.com', 'ColoredCow EmailCampaigns');
+        $this->mail->setFrom($email, 'ColoredCow EmailCampaigns');
+        $this->mail->addReplyTo($email, 'ColoredCow EmailCampaigns');
 
-       
-        $this->mail->addAddress('ms90051@gmail.com','Manish');
+        foreach ($subscriber as $sub) {
+            $this->mail->addAddress($sub, 'Manish');
+        }
+
+        $m = Mail::getInstance(SES_HOST, SESUSERNAME, SESPPASSWORD, SESSECURE, SESPORT);
 
         /*// Add cc or bcc 
         $this->mail->addCC('cc@example.com');
@@ -49,8 +53,8 @@ class Mail
 
         // Email body content
         $mailContent = '
-    <h2>Email Campaign</h2>
-    <p>'.$body.'</p>';
+    <h2>' . $name . '</h2>
+    <p>' . $body . '</p>';
         $this->mail->Body = $mailContent;
 
         // Send email

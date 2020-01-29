@@ -4,11 +4,13 @@
 <?php $this->end();?>
 <?php $this->start('body');?>
 <h3>Campaigns</h3>
+<hr>
             <table class="table id="123">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">User</th>
+                        <th scope="col">Campaigns</th>
+                        <th scope="col">Launch by</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Description</th>
                         <th scope="col">Launch On</th>
@@ -21,6 +23,7 @@
                     ?>
                         <tr>
                             <td><?= $x ?></td>
+                            <td><?= ucwords($campaign->name)?></td>
                             <td><?= $campaign->uemail ?></td>
                             <td><?= $campaign->subject ?></td>
                             <td><?= ucwords($campaign->body) ?></td>

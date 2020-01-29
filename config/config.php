@@ -22,13 +22,12 @@ define('GOOGLE_CLIENT_SECRET', '-HXWJ0aS0q-CDRD88_08hnjI');
 define('GOOGLE_REDIRECT_URL', 'http://localhost/EmailCampaign/user/login');
 
 //smtp Amazon SES
-/*
-define('SMTP_HOST','email-smtp.ap-south-1.amazonaws.com');
-define('SMTPUSERNAME','AKIA6B5RCAR6CRP7TQCI');
-define('SMTPPASSWORD','BEe7hlrvq1pl9NaDImsjZsp2jDbz31aIOjN/etDa/KKws');
-define('SMTPSECURE','tls');
-define('SMTPPORT',587);
-*/
+
+define('SES_HOST','email-smtp.ap-south-1.amazonaws.com');
+define('SESUSERNAME','AKIA6B5RCAR6CRP7TQCI');
+define('SESPPASSWORD','BEe7hlrvq1pl9NaDImsjZsp2jDbz31aIOjN/etDa/KKws');
+define('SESSECURE','tls');
+define('SESPORT',587);
 
 //smtp Gmail
 define('SMTP_HOST','smtp.gmail.com');

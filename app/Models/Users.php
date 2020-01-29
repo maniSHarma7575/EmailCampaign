@@ -78,6 +78,7 @@ class Users extends Model
         $user_agent=Session::uagent_no_version();
         $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?",[$this->id,$user_agent]);
         Session::delete(CURRENT_USER_SESSION_NAME);
+        Session::delete($_SESSION['email']);
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME))
         {
             Cookie::delete(REMEMBER_ME_COOKIE_NAME);

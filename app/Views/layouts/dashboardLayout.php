@@ -57,29 +57,23 @@ $base = PROOT . "public/login/";
                         <a href="<?=PROOT?>dashboard/">Home</a>
                     </li>
                     <li>
-                        <a href="#">Email Campaigns</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Launch Campaigns</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="<?=PROOT?>campaign/launch?service=smtp">Gmail SMTP</a>
+                            </li>
+                            <li>
+                                <a href="<?=PROOT?>campaign/launch?service=amazonses">Amazon SES</a>
+                            </li>
+                        </ul>
                     </li>
-
                     <li>
                         <a href="<?= PROOT ?>subscriber/">Subscribers</a>
                     </li>
                     <li>
                         <a href="<?= PROOT ?>user/logout">Logout</a>
                     </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
+                   
                 </ul>
 
         </nav>
