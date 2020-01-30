@@ -8,8 +8,22 @@ class Home extends Controller
     public function indexAction()
     {
 
-      
-      dnd($_SESSION);
+     /* $user=new Users();
+      $res=$user->findByEmail('ms90051@gmail.com');
+     
+      if(isset($res->email))
+      {
+        $id=20;
+        $fields=[
+            'is_verified'=>1,
+        ];
+        $q=$user->update($id,$fields);
+        dnd($user);
+      }
+      else{
+        dnd("user not exists");
+      }
+      */
      /* $m=Mail::getInstance();
       $subject="Testing Email for Campaign";
       $body="Hello buddy how are you?";

@@ -1,4 +1,3 @@
-
 <?php $this->setSiteTitle('Login'); ?>
 <?php $this->start('head'); ?>
 <?php $this->end(); ?>
@@ -22,46 +21,37 @@
 			<input class="input100 has-error" type="password" name="password" placeholder="Type your password" id="password">
 			<span class="focus-input100" data-symbol="&#xf190;"></span>
 		</div>
-		<div class="row p-t-8 p-b-31"">
-    				<div class=" text-left col-sm">
-			<label for="remember_me">Remember Me<input type="checkbox" id="remember_me" name="remember_me" value="on"></label>
-
+		<div class="row p-t-20 p-b-20"">
+    		<div class=" text-left col-sm">
+				<label for="remember_me">Remember Me<input type="checkbox" id="remember_me" name="remember_me" value="on"></label>
+			</div>
 		</div>
 
-		<div class="text-right col-sm">
-			<a href="#">
-				Forgot password?
-			</a>
-		</div>
-</div>
-
-<?php
-//echo $this->displayErrors;
-if (!empty($this->displayErrors)) {
-	echo '<div class="alert alert-warning" style="height:45px" role="alert">';
-	echo $this->displayErrors;
-	echo '</div>';
-} ?>
 
 
-<div class="container-login100-form-btn">
-	<div class="wrap-login100-form-btn">
-		<div class="login100-form-bgbtn"></div>
-		<button class="login100-form-btn ">
-			Login
-		</button>
-	</div>
-</div>
+		<?php
+		//echo $this->displayErrors;
+		if (!empty($this->displayErrors)) {
+			echo '<div class="alert alert-danger" style="height:45px" role="alert">';
+			echo $this->displayErrors;
+			echo '</div>';
+		} ?>
+
+
+		<div class="form-group text-center">
+			<button type="submit" class="btn btn-primary btn-block"> Login </button>
+		</div> <!-- form-group// -->
 
 
 
 </form>
 
-<div class="txt1 text-center p-t-20 p-b-20">
+<div class="txt1 text-center p-t-10 p-b-20">
 	<span>
 		Or
 	</span>
 </div>
+
 
 <div class="text-center">
 	<a class="btn btn-outline-dark" href="<?= filter_var($this->authUrl, FILTER_SANITIZE_URL) ?>" role="button" style="text-transform:none">

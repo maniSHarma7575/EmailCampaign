@@ -33,11 +33,15 @@ class User extends Controller
 
             if ($validation->passed()) {
                 $user = $this->UsersModel->findByEmail($_POST['email']);
-                if ($user && password_verify(Input::get('password'), $user->password)) {
+                if ($user && $user->is_verified==1 && password_verify(Input::get('password'), $user->password)) {
                     $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
                     $user->login($remember);
                     Session::set('email',$_POST['email']);
                     Router::redirect('Dashboard/');
+                }
+                elseif($user && $user->is_verified==0)
+                {
+                    $validation->addError('Please verify your email address');
                 } else {
                     $validation->addError("Email or Password incorrect");
                 }
@@ -128,9 +132,11 @@ class User extends Controller
     }
     public function registerAction()
     {
+        $errors='';
         $validation = new Validate();
         $posted_value = ['name' => '', 'email' => '', 'password' => '', 'confirm' => ''];
         if ($_POST) {
+            
             $posted_value = postedValues($_POST);
             $validation->check($_POST, [
                 'name' => [
@@ -158,12 +164,28 @@ class User extends Controller
             ]);
             if ($validation->passed()) {
                 $newUser = new Users();
-                $newUser->registerNewuser($_POST);
-                Router::redirect('user/login');
+                $q=$newUser->registerNewuser($_POST);
+                
+                if($q)
+                {
+                    Router::redirect('verification/show');   
+                }
+                else
+                {
+                    $errors="Something went wrong please try again!!!";
+                }
+                
             }
         }
+        if($errors!='')
+        {
+            $this->view->displayErros=$errors;
+        }
+        else{
+            $this->view->displayErrors = $validation->displayErrors();
+        }
         $this->view->post = $posted_value;
-        $this->view->displayErrors = $validation->displayErrors();
+        
         $this->view->render('Auth/register');
     }
     

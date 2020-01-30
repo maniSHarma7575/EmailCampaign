@@ -15,7 +15,7 @@ class Mail
     {
         $this->mail = new PHPMailer;
         $this->mail->isSMTP();
-
+        $this->mail->SMTPDebug = 2;
         $this->mail->Host     = $smtpHost;
         $this->mail->SMTPAuth = true;
         $this->mail->Username = $smtpUsername;
@@ -39,8 +39,6 @@ class Mail
             $this->mail->addAddress($sub, 'Manish');
         }
 
-        $m = Mail::getInstance(SES_HOST, SESUSERNAME, SESPPASSWORD, SESSECURE, SESPORT);
-
         /*// Add cc or bcc 
         $this->mail->addCC('cc@example.com');
         $this->mail->addBCC('bcc@example.com');*/
@@ -61,6 +59,47 @@ class Mail
         if (!$this->mail->send()) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $this->mail->ErrorInfo;
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public function sendVerification($name,$email,$token)
+    {
+        $this->mail->setFrom('sharma.manish7575@gmail.com', 'ColoredCow EmailCampaigns');
+        $this->mail->addReplyTo('sharma.manish7575@gmail.com', 'ColoredCow EmailCampaigns');
+
+        
+
+        /*// Add cc or bcc 
+        $this->mail->addCC('cc@example.com');
+        $this->mail->addBCC('bcc@example.com');*/
+
+        $this->mail->addAddress($email, $name);
+        // Email subject
+        $this->mail->Subject = 'Verify your account';
+
+        // Set email format to HTML
+        $this->mail->isHTML(true);
+
+        $mailContent="
+        <p>Welcome, $name </p>
+        <p>Click the following link to verify your account</p>
+        <a href='http://localhost/EmailCampaign/verification?email=$email&token=$token'>Click Here</a>
+        <br>
+        <p>Note If you are not trying to register into Email Campaign, pleases ignore this email</p>
+        <br>
+        <p>Thankyou,</p>
+        <p>Email Campaign team</p>
+        ";
+       
+
+
+        $this->mail->Body = $mailContent;
+
+        // Send email
+        if (!$this->mail->send()) {
+            dnd($this->mail->ErrorInfo);
             return false;
         } else {
             return true;

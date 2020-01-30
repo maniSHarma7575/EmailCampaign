@@ -23,3 +23,10 @@ function postedValues($post)
     }
     return $post_array;
 }
+function token()
+{
+    $token='qwertyuiopasdfghjklQWERTYUIOPASDFGHJKLZXCVBNM1234567890@#$%!*';
+    $token=str_shuffle($token);
+    $token=substr($token,0,10);
+    return $token;
+}

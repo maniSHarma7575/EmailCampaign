@@ -88,10 +88,14 @@ class Users extends Model
     }
     public function registerNewUser($params)
     {
-        
+         
         $par=$this->assign($params);
+        $par['is_verified']=0;
+        $par['token']=token();
         $par['password']=password_hash($par['password'],PASSWORD_BCRYPT);
-        $this->insert($par);
+        $q=$this->insert($par);
+        $m=Mail::getInstance(SMTP_HOST,SMTPUSERNAME,SMTPPASSWORD,SMTPSECURE,SMTPPORT);
+        return $m->sendVerification($par['name'],$par['email'],$par['token']);
 
 
     }
