@@ -134,5 +134,6 @@ class Model
         $query = "UPDATE ".$this->_table." SET email = '".$params['email']."', name = '".$params['name']."' WHERE oauth_provider = '".$params['oauth_provider']."' AND oauth_uid = '".$params['oauth_uid']."'";
         $update = $this->_db->query($query);
     }
+    
 
 }

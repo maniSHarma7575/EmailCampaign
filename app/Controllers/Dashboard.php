@@ -8,14 +8,15 @@ class Dashboard extends Controller
     }
     public function indexAction()
     {
+       $subscriber=new Subscribers();
+       $resSub=$subscriber->findAll();
+       $this->view->subCount=count($resSub);
+       $this->view->subscribers=$resSub;
        
-        
-       /* if(!Session::exists(CURRENT_USER_SESSION_NAME))
-        {
-            
-            Router::redirect('user/login');
-        }
-        */
+       $campaign=new Campaigns();
+       $resCamp=$campaign->findAll();
+       $this->view->campCount=count($resCamp);
+       $this->view->campaigns=$resCamp;
         $this->view->render('Dashboard/app');
     }
 }

@@ -25,8 +25,12 @@
     		<div class=" text-left col-sm">
 				<label for="remember_me">Remember Me<input type="checkbox" id="remember_me" name="remember_me" value="on"></label>
 			</div>
+			<div class="text-right col-sm">
+			<a href="#">
+							Forgot password?
+						</a>
+			</div>
 		</div>
-
 
 
 		<?php

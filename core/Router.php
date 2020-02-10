@@ -24,10 +24,6 @@ class Router
         if (method_exists($controller, $action)) {
             call_user_func([$dispatch, $action], $querey_params);
         } else {
-            if($url[1]=="accounts.google.com")
-            {
-             echo "hello";   
-            }
             die("No Controller exists for " . $controller_name);
         }
     }

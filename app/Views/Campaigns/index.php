@@ -5,7 +5,7 @@
 <?php $this->start('body');?>
 <h3>Campaigns</h3>
 <hr>
-            <table class="table id="123">
+            <table class="table table-striped id="123">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>

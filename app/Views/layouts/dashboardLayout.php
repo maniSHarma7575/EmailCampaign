@@ -12,10 +12,11 @@ $base = PROOT . "public/login/";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="<?= $basee ?>vendoor/icofont/icofont.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= $basee ?>css/style.css">
-
+    <link href="<?= $basee ?>vendoor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="<?= $base ?>images/icons/favicon.ico" />
     <!--===============================================================================================-->
@@ -54,18 +55,10 @@ $base = PROOT . "public/login/";
 
                 <ul class="list-unstyled components mb-5">
                     <li>
-                        <a href="<?=PROOT?>dashboard/">Home</a>
+                        <a href="<?= PROOT ?>dashboard/">Home</a>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Launch Campaigns</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="<?=PROOT?>campaign/launch?service=smtp">Gmail SMTP</a>
-                            </li>
-                            <li>
-                                <a href="<?=PROOT?>campaign/launch?service=amazonses">Amazon SES</a>
-                            </li>
-                        </ul>
+                        <a href='<?= PROOT ?>campaign/'>Previous Campaigns</a>
                     </li>
                     <li>
                         <a href="<?= PROOT ?>subscriber/">Subscribers</a>
@@ -73,7 +66,7 @@ $base = PROOT . "public/login/";
                     <li>
                         <a href="<?= PROOT ?>user/logout">Logout</a>
                     </li>
-                   
+
                 </ul>
 
         </nav>
@@ -94,25 +87,49 @@ $base = PROOT . "public/login/";
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item mr-xl-2">
-                                <a class="btn btn-success" style="color: white" href='<?= PROOT ?>campaign/'><i class="fa fa-envelope"></i>Previous Campaigns</a>
+
+                            <li class="nav-item mr-2">
+
+                                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle btn btn-success" style="background-color: blue"><i class="fa fa-envelope"></i>Launch Campaigns</a>
+                                <ul class="collapse list-unstyled" id="pageSubmenu">
+                                    <li>
+                                        <a href="<?= PROOT ?>campaign/launch?service=smtp" style="text-align: center">Gmail SMTP</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= PROOT ?>campaign/launch?service=amazonses" style="text-align:center">Amazon SES</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item ">
 
-                                <a class="btn btn-danger" style="color: white" href='<?= PROOT ?>subscriber/add'><i class="fa fa-plus"></i> Add Subscriber</a>
+                                <a class="btn" style="color: white;background-color: blue;" href='<?= PROOT ?>subscriber/add'><i class="fa fa-plus"></i> Add Subscriber</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color:black" href="<?= PROOT ?>user/logout"><i class="fa fa-sign-out"></i>Logout</a>
                             </li>
+
                         </ul>
                     </div>
                 </div>
             </nav>
+
             <?= $this->content('body'); ?>
 
-            
+
         </div>
     </div>
+    <footer class="footer" role="contentinfo" style="background-color:lightblue">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5" >
+                
+                <div class="d-flex align-content-end row justify-content-center font-weight-bold ">
+                    <div class="border-top container-fluid p-2">
+                        <h6 class="text-center pt-3">Pigeon &copy; 2020 , This is the introductory project assigned by <a href='https://coloredcow.com/' target="blank" class="text-white"><img src="https://coloredcow.com/wp-content/themes/ColoredCow/dist/img/logo.png" alt='ColoredCow' width="120" class="mb-2"></a> for the internship.</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     </script>
     <script src="<?= $basee ?>js/jquery.min.js"></script>

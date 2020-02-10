@@ -5,7 +5,7 @@
 <?php $this->start('body'); ?>
 <h3>Subscribers</h3>
 <hr>
-<table class="table">
+<table class="table table-striped ">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
