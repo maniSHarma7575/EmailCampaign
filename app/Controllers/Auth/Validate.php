@@ -82,16 +82,16 @@ class Validate
 
         if(!empty($this->_errors))
         {
-        $html='<ul class="text-right">';
+        
         foreach($this->_errors as $error)
         {
             if(is_array($error))
             {
-            $html.='<li class ="text-right">'.$error[0].'</li>';
+            $html=$error[0];
            // $html.='<script>jQuery("document").ready(function(){jQuery("#'.$error[1].'").parent().closest("div").addClass("has-error");});</script>';
             }
             else{
-                $html.='<li class ="text-right">'.$error.'</li>';
+                $html=$error;
             }
         break;
         }

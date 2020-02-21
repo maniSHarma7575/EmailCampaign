@@ -7,17 +7,39 @@ $(document).ready(function() {
                 url: "../ForgotPassword/verify",
                 data: 'email=' + useremail,
                 success: function(message) {
+
                     if (message == 'ok') {
                         $("#exampleModalCenter").modal('hide');
                         swal("Congrats!", "Password Reset link sent to" + useremail, "success").then(function() {
                             location.reload();
                         });
+                    } else if (message == 'noac') {
 
-                    } else {
-                        $("#exampleModalCenter").modal('hide');
-                        swal("Oops!", "Account dosen't exists!" + message, "error").then(function() {
-                            location.reload();
-                        });
+                    }
+
+
+                    switch (message) {
+                        case 'ok':
+                            $("#exampleModalCenter").modal('hide');
+                            swal("Congrats!", "Password Reset link sent to" + useremail, "success").then(function() {
+                                location.reload();
+                            });
+                            break;
+                        case 'noac':
+                            $("#exampleModalCenter").modal('hide');
+                            swal("Oops!", "Account dosen't exists!" + message, "error").then(function() {
+                                location.reload();
+                            });
+                            break;
+                        case 'no':
+                            $("#exampleModalCenter").modal('hide');
+                            swal("Oops!", "Account dosen't exists!" + message, "error").then(function() {
+                                location.reload();
+                            });
+                            break;
+
+
+
                     }
 
 

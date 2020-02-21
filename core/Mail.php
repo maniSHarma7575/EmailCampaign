@@ -66,8 +66,7 @@ class Mail
     }
     public function sendVerification($name,$email,$token)
     {
-        $this->mail->setFrom('sharma.manish7575@gmail.com', 'ColoredCow EmailCampaigns');
-        $this->mail->addReplyTo('sharma.manish7575@gmail.com', 'ColoredCow EmailCampaigns');
+        $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
 
         
 
@@ -92,6 +91,43 @@ class Mail
         <p>Thankyou,</p>
         <p>Email Campaign team</p>
         ";
+       
+
+
+        $this->mail->Body = $mailContent;
+
+        // Send email
+        if (!$this->mail->send()) {
+            dnd($this->mail->ErrorInfo);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function sendForgotPasswordLink($name,$email,$token)
+    {
+        $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
+
+        $resetPassLink ='http://localhost/EmailCampaign/ForgotPassword/reset?email=$email&token=$token';
+
+        /*// Add cc or bcc 
+        $this->mail->addCC('cc@example.com');
+        $this->mail->addBCC('bcc@example.com');*/
+
+        $this->mail->addAddress($email, $name);
+        // Email subject
+        $this->mail->Subject = 'Password Update Request';
+
+        // Set email format to HTML
+        $this->mail->isHTML(true);
+
+        $mailContent='Dear '.$name.',
+        <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
+        <br/>To reset your password, visit the following link: <a href="'.$resetPassLink.'">'.$resetPassLink.'</a>
+        <br/><br/>Regards,
+        <br/>Pigeon Team';
+   
        
 
 

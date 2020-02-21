@@ -4,8 +4,11 @@ class ForgotPassword extends Controller{
     {
         parent::__construct($controller, $action);
         $this->load_model('Users');
-        $this->view->setLayout('registrationLayout');
-        //$this->view->setLayout('default');
+        
+    }
+    public function indexAction()
+    {
+
     }
     public function verifyAction()
     {
@@ -15,19 +18,29 @@ class ForgotPassword extends Controller{
             $user = $this->UsersModel->findByEmail($email);
             if($user)
             {
-                
+                $m=Mail::getInstance(SMTP_HOST,SMTPUSERNAME,SMTPPASSWORD,SMTPSECURE,SMTPPORT);
+                $result=$m->sendForgotPasswordLink($user->name,$user->email,$user->token);
+                if(!$result)
+                {
+                    $status='no';die;
+                }
+                else{
+                    $status='ok';die;
+                }
             }
             else{
-                $status="no";
+                $status="noac";die;
             }
             
-            $status='ok';
-            echo $status;die;
+            
         }
         else
         {
-            $status='no';
-            echo $status;
+            $this->view->render('Auth/Password/sendemail');
         }
+    }
+    public function resetAction()
+    {
+        dnd("hello");
     }
 }

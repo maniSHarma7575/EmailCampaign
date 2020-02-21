@@ -33,6 +33,11 @@ h6,
     position: relative;
 }
 
+.wrap-image {
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+}
+
 .text-black {
     color: #000 !important;
 }

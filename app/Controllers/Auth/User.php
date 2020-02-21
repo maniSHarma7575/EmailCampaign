@@ -6,7 +6,7 @@ class User extends Controller
     {
         parent::__construct($controller, $action);
         $this->load_model('Users');
-        $this->view->setLayout('registrationLayout');
+        
         //$this->view->setLayout('default');
     }
     public function loginAction()
@@ -108,6 +108,7 @@ class User extends Controller
         $this->view->render('Auth/login');
 
     }
+    
     public function logoutAction()
     {
         if(isset($_SESSION['token']))

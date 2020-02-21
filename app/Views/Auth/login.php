@@ -3,70 +3,91 @@
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
-<div class="wrap-login100 p-l-35 p-r-35 p-t-20 p-b-40">
+<main id="main">
+	<div class="hero-section">
+		<div class="container-fluid my-0 py-5 min-vh-100">
+			<div class="container-fluid px-md-5 mt-3 mb-3">
+				<div class="row mx-lg-4  mx-auto px-auto">
+					<div class="col-6 mt-5 " style="margin-right:100px">
+						<h2 class="display-4 font-weight-bold text-white " data-aos="fade-right" style="font-family: 'Open Sans', sans-serif;">Welcome to Pigeon</h2>
+						<i>
+							<h6 class="mt-4" data-aos="fade-right" data-aos-delay="200" style="color:#fff;font-weight:bolder;font-size:1.8em;font-family:Times New Roman;">&ldquo;Pigeon makes it easy to send campaigns to the right people at the right time—and most importantly, to motivate customers to come back into our app.&rdquo;</h6>
+							<p class="mt-4 text-right" data-aos="fade-right" data-aos-delay="200" style="color:black">~Manish Sharma</p>
+						</i>
+					</div>
+					<div class="col-4">
+						<div id="first">
+							<div class="myform form mt-4" style="background-color: rgb(255,255,255);border-radius:25px;">
 
-	<form class="login100-form validate-form" method="post" action="">
-		<span class="login100-form-title p-b-10">
-			Login
-		</span>
+								<form action="" method="post" style="padding: 20px">
+									<div class="form-group mt-3">
 
-		<div class="wrap-input100 validate-input m-b-23" data-validate="Useremail is required">
-			<span class="label-input100">Email</span>
-			<input class="input100 has-error" type="email" name="email" placeholder="Type your email" id="email">
-			<span class="focus-input100" data-symbol="&#xf206;"></span>
+										<label for="exampleInputEmail1" style="color: black; font-weight:bold;">Email address</label>
+										<span style="color:red">*</span></label>
+
+										<input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" required="">
+
+									</div>
+									<div class="form-group">
+										<label for="password" style="color: black; font-weight:bold;">Password</label>
+										<span style="color:red">*</span></label>
+										<input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="" required="">
+									</div>
+
+
+									<div class="form-group ">
+										<div class="row">
+											<div class="col-6"><label for="remember_me" style="color: black; font-weight:bold;font-size:medium;" class="text-left mt-1">Remember Me</label><input class="text-left mt-1" type="checkbox" id="remember_me" name="remember_me" value="on"></div>
+											<div class="col-6">
+												<p class="text-right mt-1" style="color: rgb(104,104,104);"><a href="#" data-toggle="modal" data-target="#forgetmodal" style="color: rgb(24,24,24);font-size:medium;">Forgot password ?</a></p>
+											</div>
+										</div>
+									</div>
+									<?php
+									if (!empty($this->displayErrors)) {
+										echo '<p id="errorval" style="color:red; font-weight:bold; font-size:medium;" class="form-group">';
+										echo $this->displayErrors;
+										echo '</p>';
+									}
+									?>
+									<div class="col-md-14 form-group text-center ">
+										<button type="submit" class=" btn btn-block mybtn btn-primary ">Login</button>
+									</div>
+
+									<div class="row mx-1 my-3">
+										<hr class="d-inline col" style="border-top: 1px solid black;">
+										<span class='col-2 text-center' style="color: black; font-weight:bold;">or</span>
+										<hr class="d-inline col" style="border-top: 1px solid black;">
+									</div>
+									<div class="col-md-12 mb-1 ">
+
+										<div class="col-md-14 text-center">
+
+											<a class="form-group btn btn-outline-dark" style="color: black;" href="<?= filter_var($this->authUrl, FILTER_SANITIZE_URL) ?>" role="button" style="text-transform:none">
+												<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+												Login with Google
+											</a>
+
+										</div>
+
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<p class="col-1"></p>
+											<span class='col-10 text-center' style="color: black; font-weight:bold;">Don't have account? <a href="<?= PROOT ?>user/register" style="font-size:small; color: rgb(72,72,72);padding-top:10px;">Sign up here</a></span>
+											<p class="col-1"></p>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-		<div class="wrap-input100 validate-input" data-validate="Password is required">
-			<span class="label-input100">Password</span>
-			<input class="input100 has-error" type="password" name="password" placeholder="Type your password" id="password">
-			<span class="focus-input100" data-symbol="&#xf190;"></span>
-		</div>
-		<div class="row p-t-20 p-b-20"">
-    		<div class=" text-left col">
-			<label for="remember_me">Remember Me</label><input type="checkbox" id="remember_me" name="remember_me" value="on">
-		</div>
-		<div class="text-right col">
-			<a data-toggle="modal" data-target="#exampleModalCenter">
-				Forgot password?
-			</a>
-		</div>
-
-
-
-</div>
-<?php
-//echo $this->displayErrors;
-if (!empty($this->displayErrors)) {
-	echo '<div class="alert alert-danger" style="height:45px" role="alert">';
-	echo $this->displayErrors;
-	echo '</div>';
-	
-} ?>
-
-
-<div class="form-group text-center">
-	<button type="submit" class="btn btn-primary btn-block"> Login </button>
-</div> <!-- form-group// -->
-
-
-
-</form>
-
-
-<div class="txt1 text-center p-t-10 p-b-20">
-	<span>
-		----or----
-	</span>
-</div>
-
-
-<div class="text-center">
-	<a class="btn btn-outline-dark" href="<?= filter_var($this->authUrl, FILTER_SANITIZE_URL) ?>" role="button" style="text-transform:none">
-		<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-		Login with Google
-	</a>
-</div>
-</div>
+	</div>
+</main>
 
 <div class="modal fade " id="exampleModalCenter" role="dialog">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -87,9 +108,9 @@ if (!empty($this->displayErrors)) {
 								<form class="login100-form validate-form">
 									<fieldset>
 										<div class="input-group p-b-10">
-										<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-      
-										<input id="emailm" name="emailm" placeholder="Email Address" class="form-control" type="email"required="">
+											<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+
+											<input id="emailm" name="emailm" placeholder="Email Address" class="form-control" type="email" required="">
 										</div>
 
 										<div class="form-group">
