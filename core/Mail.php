@@ -15,7 +15,7 @@ class Mail
     {
         $this->mail = new PHPMailer;
         $this->mail->isSMTP();
-        $this->mail->SMTPDebug = 2;
+        $this->mail->SMTPDebug = 0;
         $this->mail->Host     = $smtpHost;
         $this->mail->SMTPAuth = true;
         $this->mail->Username = $smtpUsername;
@@ -32,8 +32,8 @@ class Mail
     }
     public function send($subscriber = [], $email, $name, $subject, $body)
     {
-        $this->mail->setFrom($email, 'ColoredCow EmailCampaigns');
-        $this->mail->addReplyTo($email, 'ColoredCow EmailCampaigns');
+        $this->mail->setFrom($email, 'Pigeon');
+        $this->mail->addReplyTo($email, 'Pigeon');
 
         foreach ($subscriber as $sub) {
             $this->mail->addAddress($sub, 'Manish');
@@ -64,24 +64,22 @@ class Mail
             return true;
         }
     }
-    public function sendVerification($name,$email,$token)
+    public function sendVerification($name, $email, $token, $work)
     {
         $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
 
-        
+
 
         /*// Add cc or bcc 
         $this->mail->addCC('cc@example.com');
         $this->mail->addBCC('bcc@example.com');*/
 
         $this->mail->addAddress($email, $name);
-        // Email subject
-        $this->mail->Subject = 'Verify your account';
 
-        // Set email format to HTML
-        $this->mail->isHTML(true);
 
-        $mailContent="
+        if ($work === "verification") {
+            $subject = 'Verify your account';
+            $mailContent = "
         <p>Welcome, $name </p>
         <p>Click the following link to verify your account</p>
         <a href='http://localhost/EmailCampaign/verification?email=$email&token=$token'>Click Here</a>
@@ -91,25 +89,39 @@ class Mail
         <p>Thankyou,</p>
         <p>Email Campaign team</p>
         ";
-       
+        } else {
+            $resetPassLink = 'http://localhost/EmailCampaign/ForgotPassword/reset?email=' . $email . '&token=' . $token;
+            $subject = 'Password Update Request';
+            $mailContent = 'Dear ' . $name . ',
+            <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
+            <br/>To reset your password, visit the following link: <a href="' . $resetPassLink . '">' . $resetPassLink . '</a>
+            <br/><br/>Regards,
+            <br/>Pigeon Team';
+        }
 
+        // Email subject
+        $this->mail->Subject = $subject;
+        // Set email format to HTML
+        $this->mail->isHTML(true);
 
         $this->mail->Body = $mailContent;
 
         // Send email
         if (!$this->mail->send()) {
-            dnd($this->mail->ErrorInfo);
+
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $this->mail->ErrorInfo;
             return false;
         } else {
             return true;
         }
     }
 
-    public function sendForgotPasswordLink($name,$email,$token)
+    public function sendForgotPasswordLink($name, $email, $token)
     {
         $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
 
-        $resetPassLink ='http://localhost/EmailCampaign/ForgotPassword/reset?email=$email&token=$token';
+        $resetPassLink = 'http://localhost/EmailCampaign/ForgotPassword/reset?email=' . $email . '&token=' . $token;
 
         /*// Add cc or bcc 
         $this->mail->addCC('cc@example.com');
@@ -122,20 +134,22 @@ class Mail
         // Set email format to HTML
         $this->mail->isHTML(true);
 
-        $mailContent='Dear '.$name.',
+        $mailContent = 'Dear ' . $name . ',
         <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
-        <br/>To reset your password, visit the following link: <a href="'.$resetPassLink.'">'.$resetPassLink.'</a>
+        <br/>To reset your password, visit the following link: <a href="' . $resetPassLink . '">' . $resetPassLink . '</a>
         <br/><br/>Regards,
         <br/>Pigeon Team';
-   
-       
+
+
 
 
         $this->mail->Body = $mailContent;
 
         // Send email
         if (!$this->mail->send()) {
-            dnd($this->mail->ErrorInfo);
+
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $this->mail->ErrorInfo;
             return false;
         } else {
             return true;

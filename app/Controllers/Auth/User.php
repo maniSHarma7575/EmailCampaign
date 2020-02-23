@@ -17,6 +17,10 @@ class User extends Controller
         {
             Router::redirect('Dashboard/');
         }
+        if($_GET && $_GET['emailmodel'])
+        {
+            Router::redirect('ForgotPassword/verify?emailmodel='.$_GET['emailmodel']);   
+        }
         if ($_POST) {
             
             $validation = $validation->check($_POST, [

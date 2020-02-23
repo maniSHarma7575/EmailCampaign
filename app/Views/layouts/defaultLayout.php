@@ -10,7 +10,7 @@ $defbase = PROOT . "public/dashboard/";
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700|Roboto:300,400,700&display=swap" rel="stylesheet">
 
   <link href="<?= $defbase ?>vendoor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -71,27 +71,7 @@ $defbase = PROOT . "public/dashboard/";
 
     <?= $this->content('body'); ?>
 
-    <footer class="footer" role="contentinfo">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-5">
-            <h4 class="section-heading">About us</h2>
-              <p>Pigeon is a free open source platform to launch your campaigns and grow your business.</p>
-              <p class="social">
-              <a href="https://twitter.com/ManishS77291587"><span class="icofont-twitter"></span></a>
-              <a href="https://www.facebook.com/profile.php/manishsharma"><span class="icofont-facebook"></span></a>
-              <a href="https://www.linkedin.com/in/manish-sharma-694263157"><span class="icofont-linkedin"></span></a>
-              <a href="https://github.com/maniSHarma7575"><span class="icofont-github"></span></a>
-            </p>
-          </div>
-          <div class="d-flex align-content-end row justify-content-center font-weight-bold ">
-            <div class="border-top container-fluid p-2">
-              <p class="text-center pt-3">Pigeon &copy; 2020 , This is the introductory project assigned by <a href='https://coloredcow.com/' target="blank" class="text-white"><img src="https://coloredcow.com/wp-content/themes/ColoredCow/dist/img/logo.png" alt='ColoredCow' width="120" class="mb-2"></a> for the internship.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    
   </div>
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>

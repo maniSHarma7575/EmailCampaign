@@ -1,10 +1,3 @@
-/*!
- * Bootstrap v4.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
 .app-title {
     display: block;
     font-family: Poppins-Bold;
@@ -11028,7 +11021,7 @@ h5,
 #sidebar {
     min-width: 300px;
     max-width: 300px;
-    background: #1d1919;
+    background: rgba(39, 70, 133, 0.8);
     color: #fff;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -11041,8 +11034,8 @@ h5,
 
 #sidebar .logo {
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto;
 }
 
@@ -11121,14 +11114,14 @@ a[data-toggle="collapse"] {
 }
 
 .btn.btn-primary {
-    background: #f8b739;
-    border-color: #f8b739;
+    background: #0000ff;
+    border-color: #0000ff;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
-    background: #f8b739 !important;
-    border-color: #f8b739 !important;
+    background: #0000ff !important;
+    border-color: #0000ff !important;
 }
 
 .footer p {

@@ -122,5 +122,26 @@ $base = PROOT . "public/dashboard/";
     </div>
   </div>
 </main>
+<footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-5">
+            <h4 class="section-heading">About us</h2>
+              <p>Pigeon is a free open source platform to launch your campaigns and grow your business.</p>
+              <p class="social">
+              <a href="https://twitter.com/ManishS77291587"><span class="icofont-twitter"></span></a>
+              <a href="https://www.facebook.com/profile.php/manishsharma"><span class="icofont-facebook"></span></a>
+              <a href="https://www.linkedin.com/in/manish-sharma-694263157"><span class="icofont-linkedin"></span></a>
+              <a href="https://github.com/maniSHarma7575"><span class="icofont-github"></span></a>
+            </p>
+          </div>
+          <div class="d-flex align-content-end row justify-content-center font-weight-bold ">
+            <div class="border-top container-fluid p-2">
+              <p class="text-center pt-3">Pigeon &copy; 2020 , This is the introductory project assigned by <a href='https://coloredcow.com/' target="blank" class="text-white"><img src="https://coloredcow.com/wp-content/themes/ColoredCow/dist/img/logo.png" alt='ColoredCow' width="120" class="mb-2"></a> for the internship.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 <?php $this->end(); ?>

@@ -95,7 +95,7 @@ class Users extends Model
         $par['password']=password_hash($par['password'],PASSWORD_BCRYPT);
         $q=$this->insert($par);
         $m=Mail::getInstance(SMTP_HOST,SMTPUSERNAME,SMTPPASSWORD,SMTPSECURE,SMTPPORT);
-        return $m->sendVerification($par['name'],$par['email'],$par['token']);
+        return $m->sendVerification($par['name'],$par['email'],$par['token'],"verification");
 
 
     }

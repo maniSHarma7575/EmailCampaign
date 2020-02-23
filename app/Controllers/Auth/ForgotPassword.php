@@ -6,41 +6,83 @@ class ForgotPassword extends Controller{
         $this->load_model('Users');
         
     }
-    public function indexAction()
-    {
-
-    }
     public function verifyAction()
     {
-        if (isset($_POST['email'])) {
+        if (isset($_GET['emailmodel'])) {
           
-            $email = strip_tags($_POST['email']);
+            $email = strip_tags($_GET['emailmodel']);
             $user = $this->UsersModel->findByEmail($email);
-            if($user)
+            
+            if($user->email!="")
             {
                 $m=Mail::getInstance(SMTP_HOST,SMTPUSERNAME,SMTPPASSWORD,SMTPSECURE,SMTPPORT);
-                $result=$m->sendForgotPasswordLink($user->name,$user->email,$user->token);
+                $result=$m->sendVerification($user->name,$user->email,$user->token,"reset");
                 if(!$result)
                 {
-                    $status='no';die;
+                    $status='no';
                 }
                 else{
-                    $status='ok';die;
+                    $status='ok';
                 }
             }
             else{
-                $status="noac";die;
+                $status="noac";
             }
-            
+            $this->view->displayErrors=$status;
+            $this->view->render('Auth/login');
             
         }
         else
         {
-            $this->view->render('Auth/Password/sendemail');
+            
+            $this->view->render('Home/index');
         }
     }
     public function resetAction()
     {
-        dnd("hello");
+        $errors='';
+        if ($_POST) {
+            $validation = new Validate();
+            $validation->check($_POST, [
+                'password' => [
+                    'display' => 'Password',
+                    'required' => true,
+                    'min' => 6
+                ],
+                'confirm' => [
+                    'display' => 'Confirm Password',
+                    'required' => true,
+                    'matches' => 'password'
+                ]
+            ]);
+            if ($validation->passed()) {
+                $email = strip_tags($_GET['email']);
+                $passcode=$_GET['token'];
+                $password=password_hash($_POST['password'],PASSWORD_BCRYPT);
+                $user = $this->UsersModel->findByEmail($email);
+                if($user && $user->token===$passcode)
+                {
+                    $params=[
+                        'email'=>$email,
+                        'password'=>$password
+                        
+                    ];
+                    $this->UsersModel->updatePassword($params);
+                    $errors="no";
+                }
+                else
+                {
+                    $errors='Something went wrong! Please try again';
+                }
+            }
+            if($errors!='')
+        {
+            $this->view->displayErrors=$errors;
+        }
+        else{
+            $this->view->displayErrors = $validation->displayErrors();
+        }
+        }
+        $this->view->render('Auth/Password/reset');
     }
 }

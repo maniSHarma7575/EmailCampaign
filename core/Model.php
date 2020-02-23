@@ -134,6 +134,11 @@ class Model
         $query = "UPDATE ".$this->_table." SET email = '".$params['email']."', name = '".$params['name']."' WHERE oauth_provider = '".$params['oauth_provider']."' AND oauth_uid = '".$params['oauth_uid']."'";
         $update = $this->_db->query($query);
     }
+    public function updatePassword($params)
+    {
+        $query = "UPDATE ".$this->_table." SET password = '".$params['password']."' WHERE email = '".$params['email']."'";
+        $update = $this->_db->query($query);
+    }
     
 
 }
