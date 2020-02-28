@@ -16,6 +16,7 @@ class Subscriber extends Controller
     }
     public function addAction()
     {
+        
         $validation = new Validate();
         $posted_value = ['name' => '', 'email' => '', 'category' => ''];
         if ($_POST) {
@@ -42,12 +43,14 @@ class Subscriber extends Controller
             if ($validation->passed()) {
                 $newUser = new Subscribers();
                 $newUser->registerNewSubscriber($_POST);
-                Router::redirect('dashboard/');
+                $status="ok";
+                echo $status;die;
             }
         }
-        $this->view->post = $posted_value;
-        $this->view->displayErrors = $validation->displayErrors();
-        $this->view->render('Subscribers/create');
+        $status= $validation->displayErrors();
+        echo $status;die;
+        
+        
     }
     
 }

@@ -3,15 +3,15 @@
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
-<h3>Subscribers</h3>
+<h3 style="padding-top: 30px;font-weight:bold; ">Subscribers</h3>
 <hr>
 <table class="table table-striped ">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Category</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;"  scope="col">#</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Name</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Email</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Category</th>
     </tr>
   </thead>
   <tbody>

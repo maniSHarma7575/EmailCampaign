@@ -11034,8 +11034,8 @@ h5,
 
 #sidebar .logo {
     display: block;
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
 }
 
@@ -11067,12 +11067,12 @@ h5,
 }
 
 #sidebar ul li a:hover {
-    color: #f8b739;
+    color: black;
 }
 
 #sidebar ul li.active>a {
     background: transparent;
-    color: #f8b739;
+    color: black;
 }
 
 @media (max-width: 991.98px) {

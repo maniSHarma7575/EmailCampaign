@@ -4,39 +4,42 @@
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
-<h3>Dashboard</h3>
+<h3 style='font-weight:bold;'>Dashboard</h3>
 <hr>
 <div class="row">
-  <div class="col-md-6  ">
-    <div class="card text-center" style="padding-top: 25px; padding-bottom: 25px;">
-      <span class="icon fa fa-users"></span>
-      <h1><?= $this->subCount ?></h1>
-      <h4 style='text-align:center; font-weight:bold;'>All your subscriber</h4>
+        
+        <div class="col-md-6">
+          <div class="feature-1 text-center">
+            <div class="wrap-icon icon-1">
+              <span class="icon la la-users"></span>
+            </div>
+            <h4 class="mb-3" style='text-align:center; font-weight:bold;'>All your subscriber</h4>
+            <h1><?= $this->subCount ?></h1>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-1 text-center">
+            <div class="wrap-icon icon-1">
+              <span class="icon la la-envelope"></span>
+            </div>
+            <h4 class="mb-3" style='text-align:center; font-weight:bold;'>All your Campaigns</h4>
+            <h1><?= $this->campCount ?></h1>
+          </div>
+        </div>
+      </div>
 
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card text-center" style="padding-top: 25px;padding-bottom: 25px;">
-      <span class="icon fa fa-envelope"></span>
-      <h1><?= $this->campCount ?></h1>
-      <h4 style='text-align:center; font-weight:bold;'>All your Campaigns</h4>
-    </div>
-  </div>
-
-</div>
-
-<h4 style="padding-top: 30px; ">Previous Email Campaigns</h4>
+<h3 style="padding-top: 30px;font-weight:bold; ">Previous Campaigns</h3>
 <hr>
 
 <table class="table table-striped id=" 123">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Campaigns</th>
-      <th scope="col">Launch by</th>
-      <th scope="col">Subject</th>
-      <th scope="col">Description</th>
-      <th scope="col">Launch On</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">#</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Campaigns</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Launch by</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Subject</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Description</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Created</th>
     </tr>
   </thead>
   <tbody>
@@ -57,15 +60,15 @@
   </tbody>
 </table>
 
-<h4 style="padding-top: 30px; ">Subscribers</h4>
+<h3 style="padding-top: 30px;font-weight:bold; ">Subscribers</h3>
 <hr>
 <table class="table table-striped ">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Category</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">#</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Name</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Email</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Category</th>
     </tr>
   </thead>
   <tbody>
@@ -83,6 +86,7 @@
 
   </tbody>
 </table>
+
 
 
 <?php $this->end(); ?>

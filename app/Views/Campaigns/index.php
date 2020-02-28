@@ -3,17 +3,17 @@
 <meta content="test">
 <?php $this->end();?>
 <?php $this->start('body');?>
-<h3>Campaigns</h3>
+<h3 style="padding-top: 30px;font-weight:bold; ">Previous Campaigns</h3>
 <hr>
             <table class="table table-striped id="123">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Campaigns</th>
-                        <th scope="col">Launch by</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Launch On</th>
+                        <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">#</th>
+                        <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Campaigns</th>
+                        <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Launch by</th>
+                        <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Subject</th>
+                        <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Description</th>
+                        <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Created</th>
                     </tr>
                 </thead>
                 <tbody>

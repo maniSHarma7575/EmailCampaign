@@ -79,7 +79,6 @@ $defbase = PROOT . "public/dashboard/";
   <script src="<?= $defbase ?>vendoor/jquery/jquery-migrate.min.js"></script>
   <script src="<?= $defbase ?>vendoor/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?= $defbase ?>vendoor/easing/easing.min.js"></script>
-  <script src="<?= $defbase ?>vendoor/php-email-form/validate.js"></script>
   <script src="<?= $defbase ?>vendoor/sticky/sticky.js"></script>
   <script src="<?= $defbase ?>vendoor/aos/aos.js"></script>
   <script src="<?= $defbase ?>vendoor/owlcarousel/owl.carousel.min.js"></script>
