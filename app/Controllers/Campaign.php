@@ -15,6 +15,7 @@ class Campaign extends Controller
     }
     public function launchAction()
     {
+        $errors='';
         $serviceType=$_GET['service'];   
         $validation = new Validate();
         $posted_value = ['name' => '', 'subject' => '', 'body' => ''];
@@ -40,10 +41,54 @@ class Campaign extends Controller
 
                 ]
             ]);
-            if ($validation->passed()) {
+            $name_of_uploaded_file =
+                basename($_FILES['uploaded_file']['name']);
+            
+            
+            //get the file extension of the file
+            $type_of_uploaded_file =
+                substr($name_of_uploaded_file,
+                strrpos($name_of_uploaded_file, '.') + 1);
+            
+            $size_of_uploaded_file =
+                $_FILES["uploaded_file"]["size"]/1024;//size in KBs
+            
+                //Settings
+            
+            $max_allowed_file_size = 2049; // size in KB
+            $allowed_extensions = array("jpg", "jpeg", "gif", "bmp","pdf","zip","docx","png");
+            if($name_of_uploaded_file!='')
+            {
+            $errors.=documentValidation($size_of_uploaded_file,$max_allowed_file_size,$allowed_extensions,$type_of_uploaded_file);
+            }
 
-                //Subscriber List
-
+            
+            if ($validation->passed() && $errors=='') {
+            //copy the temp. uploaded file to uploads folder
+            $upload_folder="/var/www/html/EmailCampaign/public/campaignDocument/";
+            $path_of_uploaded_file = $upload_folder . $name_of_uploaded_file;
+            $tmp_path = $_FILES["uploaded_file"]["tmp_name"];
+            echo $tmp_path.'   ';
+            echo $path_of_uploaded_file;
+            
+            if(is_uploaded_file($tmp_path))
+            {
+                echo 'executed';
+                
+          //  mkdir(dirname($path_of_uploaded_file), 0777, true);
+               // move_uploaded_file($tmp_path.'/'.$name_of_uploaded_file,$path_of_uploaded_file);
+              if(!copy($tmp_path,$path_of_uploaded_file))
+              {
+                $errors .= 'Error while copying the uploaded file';
+              }
+            }
+            else if($name_of_uploaded_file!='')
+            {
+                $errors.='Something went wrong please try again latter';
+            }
+            
+            if($errors=='')
+            {
                 $reception = $this->CampaignsModel->subscriberList();
                 $subject = $posted_value['subject'];
                 $name = $posted_value['name'];
@@ -58,16 +103,32 @@ class Campaign extends Controller
                 {
                     $m= Mail::getInstance(SES_HOST,SESUSERNAME,SESPPASSWORD,SESSECURE,SESPORT);
                 }
-                $result = $m->send($reception,$email,$name,$subject,$body);
+                if($name_of_uploaded_file!='')
+                {
+                    $link=$path_of_uploaded_file;
+                    $_POST['attachment']=$path_of_uploaded_file;
+                    
+                }
+                else{
+                    $link='';
+                }
+                $result = $m->send($reception,$email,$name,$subject,$body,$link);
                 if($result)
                 {
                     $this->CampaignsModel->registerNewCampaign($_POST);
                     Router::redirect('campaign/');
                 }
             }
+            }
+        }
+        if($errors!='')
+        {
+            $this->view->displayErrors=$errors;
+        }
+        else{
+            $this->view->displayErrors = $validation->displayErrors();
         }
         $this->view->post = $posted_value;
-        $this->view->displayErrors = $validation->displayErrors();
         $this->view->render('Campaigns/create');
     }
 }

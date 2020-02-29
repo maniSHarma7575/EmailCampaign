@@ -30,7 +30,7 @@ class Mail
         }
         return self::$_instance;
     }
-    public function send($subscriber = [], $email, $name, $subject, $body)
+    public function send($subscriber = [], $email, $name, $subject, $body,$link)
     {
         $this->mail->setFrom($email, 'Pigeon');
         $this->mail->addReplyTo($email, 'Pigeon');
@@ -54,6 +54,11 @@ class Mail
     <h2>' . $name . '</h2>
     <p>' . $body . '</p>';
         $this->mail->Body = $mailContent;
+
+        if($link!='')
+        {
+            $this->mail->addAttachment($link);
+        }
 
         // Send email
         if (!$this->mail->send()) {

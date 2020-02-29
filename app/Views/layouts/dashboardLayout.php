@@ -33,7 +33,23 @@ $base = PROOT . "public/dashboard/";
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
-
+    <style>.fa-trash-o:hover {
+    color: blue;
+}</style>
+<style>
+.change:hover {
+    background-color: red;
+    color:#fff;
+    border-radius: 25%;
+    margin-right: 5px;
+    margin-left:5px;
+}
+</style>
+<style>
+.fa-times:hover {
+    color: black;
+}  
+</style>
 
 
 
@@ -95,7 +111,7 @@ $base = PROOT . "public/dashboard/";
                                 <a class="btn btn-primary" href='<?= PROOT ?>subscriber/add' data-toggle="modal" data-target="#example" class="nav-link"><i class="pr-2 fa fa-plus"></i> Add Subscriber</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="modal" data-target=".bs-example-modal-sm" style="color:black" ><i class="pr-2 fa fa-sign-out"></i>Logout</a>
+                                <a class="nav-link change" data-toggle="modal" data-target=".bs-example-modal-sm" style="color:black" ><i class="pr-2 fa fa-sign-out"></i>Logout</a>
                             </li>
 
                         </ul>
