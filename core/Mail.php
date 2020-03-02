@@ -38,29 +38,16 @@ class Mail
         foreach ($subscriber as $sub) {
             $this->mail->addAddress($sub, 'Manish');
         }
-
-        /*// Add cc or bcc 
-        $this->mail->addCC('cc@example.com');
-        $this->mail->addBCC('bcc@example.com');*/
-
-        // Email subject
         $this->mail->Subject = $subject;
-
-        // Set email format to HTML
         $this->mail->isHTML(true);
-
-        // Email body content
-        $mailContent = '
-    <h2>' . $name . '</h2>
-    <p>' . $body . '</p>';
+        $template=emailTemplate();
+        $mailContent = $template['first'] . $name .$template['second']. $subject . $template['third'].$body.$template['fourth'];
         $this->mail->Body = $mailContent;
-
+        
         if($link!='')
         {
             $this->mail->addAttachment($link);
         }
-
-        // Send email
         if (!$this->mail->send()) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $this->mail->ErrorInfo;

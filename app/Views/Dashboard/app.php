@@ -13,7 +13,7 @@
             <div class="wrap-icon icon-1">
               <span class="icon la la-users"></span>
             </div>
-            <h4 class="mb-3" style='text-align:center; font-weight:bold;'>All your subscriber</h4>
+            <h4 class="mb-3" style='text-align:center; font-weight:bold;'>All your subscribers</h4>
             <h1><?= $this->subCount ?></h1>
           </div>
         </div>
@@ -40,6 +40,7 @@
       <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Subject</th>
       <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Description</th>
       <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Created</th>
+      <th style="color:black;font-weight:bold;background:#58a0c3;" scope="col">Attachment</th>
     </tr>
   </thead>
   <tbody>
@@ -54,6 +55,15 @@
         <td><?= $campaign->subject ?></td>
         <td><?= ucwords($campaign->body) ?></td>
         <td><?= $campaign->sent_at ?></td>
+        <?php
+                            if($campaign->attachment=='notdefined')
+                            {
+                                ?>
+                                <td></td>
+                            <?php } else{?>
+                            
+                            <td><a  href="<?=PROOT.substr($campaign->attachment,28);?>"><abbr title="Click to open attachment"><i class="fa fa-file fa-3x"></i></abbr></a></td>
+                            <?php } ?>
       </tr>
     <?php } ?>
 
