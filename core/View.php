@@ -9,10 +9,9 @@ class View
     {
         $viewAry = explode('/', $viewName);
         $viewString = implode(DS, $viewAry);
-
         if (file_exists(ROOT . DS . 'app' . DS . 'Views' . DS . $viewString . '.php')) {
-            include(ROOT . DS . 'app' . DS.'Views' . DS . $viewString . '.php');
-            include(ROOT . DS . 'app' .DS. 'Views' . DS . 'layouts' . DS . $this->_layout . '.php');
+            include(ROOT . DS . 'app' . DS . 'Views' . DS . $viewString . '.php');
+            include(ROOT . DS . 'app' . DS . 'Views' . DS . 'layouts' . DS . $this->_layout . '.php');
         } else {
             die('The view with' . $viewName . 'dosent exists');
         }

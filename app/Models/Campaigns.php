@@ -16,7 +16,7 @@ class Campaigns extends Model
             }
         }
     }
- 
+
     public function findAll($params = [])
     {
         return $this->find($params);
@@ -33,14 +33,11 @@ class Campaigns extends Model
     }
     public function registerNewCampaign($params)
     {
-    
         $user = new Users();
         $res = $user->findById($_SESSION[CURRENT_USER_SESSION_NAME]);
         $userEmail = $res->email;
         $params['uemail'] = $userEmail;
         $par = $this->assign($params);
         $this->insert($par);
-        
-        
     }
 }

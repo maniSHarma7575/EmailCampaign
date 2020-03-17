@@ -3,27 +3,23 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container-fluid">
- 
   <div class="row m-5" style="vertical-align:middle;">
-  <?php
-  
-  //echo $this->displayErrors;
-  if (!empty($this->displayErrors)) {
-    echo '<div class="alert alert-warning" style="height:45px" role="alert">';
-    echo $this->displayErrors;
-    echo '</div>';
-  } ?>
+    <?php
+    if (!empty($this->displayErrors)) {
+      echo '<div class="alert alert-warning" style="height:45px" role="alert">';
+      echo $this->displayErrors;
+      echo '</div>';
+    } ?>
     <div class="col-lg-12 bg-dark text-white">
       <div class="row" style="background:#58a0c3;">
         <div class="col-lg-6">
           <h4 class="pt-2" style="color:black;font-weight:bold;">New Campaign</h4>
         </div>
         <div class="col-lg-6 pt-2 message-box-icon">
-										<span class="pull-right">
-											<i class="fa fa-times" aria-hidden="true"></i>
-										</span>
-									</div>
-
+          <span class="pull-right">
+            <a href="<?= PROOT ?>Dashboard/"><i class="fa fa-times" aria-hidden="true"></i></a>
+          </span>
+        </div>
       </div>
     </div>
     <div class="col-lg-12 p-0 message-box-input">
@@ -36,7 +32,7 @@
         <div class="message-box-last-content p-2">
           <button type="submit" class="btn btn-primary btn-sm pl-3 pr-3">SEND</button>
           <span>
-          <input type="file" name="uploaded_file"/> 
+            <input type="file" name="uploaded_file" />
           </span>
           <span class="pull-right">
             <i class="fa fa-trash-o fa-2x" onclick="document.getElementById('campaignform').reset();" aria-hidden="true"></i>
@@ -44,9 +40,6 @@
         </div>
     </div>
     </form>
-
   </div>
 </div>
-
-
 <?php $this->end(); ?>

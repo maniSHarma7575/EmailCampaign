@@ -30,22 +30,19 @@ class Mail
         }
         return self::$_instance;
     }
-    public function send($subscriber = [], $email, $name, $subject, $body,$link)
+    public function send($subscriber = [], $email, $name, $subject, $body, $link)
     {
         $this->mail->setFrom($email, 'Pigeon');
         $this->mail->addReplyTo($email, 'Pigeon');
-
         foreach ($subscriber as $sub) {
             $this->mail->addAddress($sub, 'Manish');
         }
         $this->mail->Subject = $subject;
         $this->mail->isHTML(true);
-        $template=emailTemplate();
-        $mailContent = $template['first'] . $name .$template['second']. $subject . $template['third'].$body.$template['fourth'];
+        $template = emailTemplate();
+        $mailContent = $template['first'] . $name . $template['second'] . $subject . $template['third'] . $body . $template['fourth'];
         $this->mail->Body = $mailContent;
-        
-        if($link!='')
-        {
+        if ($link != '') {
             $this->mail->addAttachment($link);
         }
         if (!$this->mail->send()) {
@@ -59,16 +56,7 @@ class Mail
     public function sendVerification($name, $email, $token, $work)
     {
         $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
-
-
-
-        /*// Add cc or bcc 
-        $this->mail->addCC('cc@example.com');
-        $this->mail->addBCC('bcc@example.com');*/
-
         $this->mail->addAddress($email, $name);
-
-
         if ($work === "verification") {
             $subject = 'Verify your account';
             $mailContent = "
@@ -90,17 +78,10 @@ class Mail
             <br/><br/>Regards,
             <br/>Pigeon Team';
         }
-
-        // Email subject
         $this->mail->Subject = $subject;
-        // Set email format to HTML
         $this->mail->isHTML(true);
-
         $this->mail->Body = $mailContent;
-
-        // Send email
         if (!$this->mail->send()) {
-
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $this->mail->ErrorInfo;
             return false;
@@ -112,34 +93,17 @@ class Mail
     public function sendForgotPasswordLink($name, $email, $token)
     {
         $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
-
         $resetPassLink = 'http://localhost/EmailCampaign/ForgotPassword/reset?email=' . $email . '&token=' . $token;
-
-        /*// Add cc or bcc 
-        $this->mail->addCC('cc@example.com');
-        $this->mail->addBCC('bcc@example.com');*/
-
         $this->mail->addAddress($email, $name);
-        // Email subject
         $this->mail->Subject = 'Password Update Request';
-
-        // Set email format to HTML
         $this->mail->isHTML(true);
-
         $mailContent = 'Dear ' . $name . ',
         <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
         <br/>To reset your password, visit the following link: <a href="' . $resetPassLink . '">' . $resetPassLink . '</a>
         <br/><br/>Regards,
         <br/>Pigeon Team';
-
-
-
-
         $this->mail->Body = $mailContent;
-
-        // Send email
         if (!$this->mail->send()) {
-
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $this->mail->ErrorInfo;
             return false;

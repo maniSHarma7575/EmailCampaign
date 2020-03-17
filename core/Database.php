@@ -20,13 +20,9 @@ class Database
     }
     public function query($sql, $params = [])
     {
-
         $this->_error = false;
         if ($this->_query = $this->_pdo->prepare($sql)); {
-            
             $x = 1;
-           // dnd($params);
-           // dnd(count($params));
             if (!empty($params)) {
                 foreach ($params as $param) {
                     $this->_query->bindValue($x, $param);
@@ -43,13 +39,11 @@ class Database
         }
         return $this;
     }
-
     public function insert($table, $fields = [])
     {
         $fieldString = '';
         $valueString = '';
         $values = [];
-
         foreach ($fields as $field => $value) {
             $fieldString .= '`' . $field . '`,';
             $valueString .= '?,';
@@ -111,14 +105,10 @@ class Database
 
     public function _read($table, $params = [])
     {
-        
-        
         $conditionString = '';
         $bind = '';
         $order = '';
         $limit = '';
-
-        //ConditionString
         if (isset($params['conditions'])) {
             if (is_array($params['conditions'])) {
                 foreach ($params['conditions'] as $condition) {
@@ -133,24 +123,16 @@ class Database
                 $conditionString = ' WHERE ' . $conditionString;
             }
         }
-
-        //bind
         if (array_key_exists('bind', $params)) {
             $bind = $params['bind'];
         }
-        //order
         if (array_key_exists('order', $params)) {
             $order = ' ORDER BY ' . $params['order'];
         }
-
-        //limit
         if (array_key_exists('limit', $params)) {
             $limit = ' LIMIT ' . $params['limit'];
         }
-
         $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-        
-        
         if ($this->query($sql, $bind)) {
             if (!count($this->_result)) return false;
             return true;

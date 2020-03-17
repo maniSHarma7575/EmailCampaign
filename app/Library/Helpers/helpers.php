@@ -6,9 +6,13 @@ function dnd($data)
     echo '</pre>';
     die();
 }
+function controllersStrings()
+{
+    return array('Home','ForgotPassword','User','Verification','Campaign','Dashboard','Subscriber');
+}
 function sanitize($dirty)
 {
-    return htmlentities($dirty,ENT_QUOTES,'UTF-8');
+    return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
 }
 function currentUser()
 {
@@ -16,55 +20,50 @@ function currentUser()
 }
 function postedValues($post)
 {
-    $post_array=[];
-    foreach($post as $key=>$value)
-    {
-        $post_array[$key]=$value;
+    $post_array = [];
+    foreach ($post as $key => $value) {
+        $post_array[$key] = $value;
     }
     return $post_array;
 }
 function token()
 {
-    $token='qwertyuiopasdfghjklQWERTYUIOPASDFGHJKLZXCVBNM1234567890@$%!*';
-    $token=str_shuffle($token);
-    $token=substr($token,0,10);
+    $token = 'qwertyuiopasdfghjklQWERTYUIOPASDFGHJKLZXCVBNM1234567890@$%!*';
+    $token = str_shuffle($token);
+    $token = substr($token, 0, 10);
     return $token;
 }
-function documentValidation($size_of_uploaded_file,$max_allowed_file_size,$allowed_extensions,$type_of_uploaded_file)
+function documentValidation($size_of_uploaded_file, $max_allowed_file_size, $allowed_extensions, $type_of_uploaded_file)
 {
-    $errors='';
-    if($size_of_uploaded_file > $max_allowed_file_size )
-    {
-      $errors .= "\n Size of file should be less than $max_allowed_file_size";
+    $errors = '';
+    if ($size_of_uploaded_file > $max_allowed_file_size) {
+        $errors .= "\n Size of file should be less than $max_allowed_file_size";
     }
-    
-    
+
+
     $allowed_ext = false;
-    for($i=0; $i<sizeof($allowed_extensions); $i++)
-    {
-      if(strcasecmp($allowed_extensions[$i],$type_of_uploaded_file) == 0)
-      {
-        $allowed_ext = true;
-      }
+    for ($i = 0; $i < sizeof($allowed_extensions); $i++) {
+        if (strcasecmp($allowed_extensions[$i], $type_of_uploaded_file) == 0) {
+            $allowed_ext = true;
+        }
     }
-    
-    if(!$allowed_ext)
-    {
-      $errors .= "The uploaded file is not supported file type. ".
-      " Only the following file types are supported: ".implode(',',$allowed_extensions);
+
+    if (!$allowed_ext) {
+        $errors .= "The uploaded file is not supported file type. " .
+            " Only the following file types are supported: " . implode(',', $allowed_extensions);
     }
     return $errors;
 }
 function emailTemplate()
 {
-  $template['first']='<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    $template['first'] = '<table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
       <td style="padding: 10px 0 10px 0;">
           <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
               <tr>
                   <td align="center" bgcolor="#70bbd9" style="padding: 10px 0 10px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
                       <h2 style="color:black; display: block;">';
-  $template['second']='</h2>
+    $template['second'] = '</h2>
                   </td>
               </tr>
               <tr>
@@ -73,14 +72,14 @@ function emailTemplate()
                           <tr>
                               <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
                                   <b>';
-  $template['third']='</b>
+    $template['third'] = '</b>
                               </td>
                           </tr>
                           <tr>
                               <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">';
 
-                                
-  $template['fourth']='</td>
+
+    $template['fourth'] = '</td>
                           </tr>
 
                       </table>
@@ -128,5 +127,5 @@ function emailTemplate()
       </td>
   </tr>
 </table>';
-return $template;
+    return $template;
 }

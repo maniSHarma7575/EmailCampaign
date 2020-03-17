@@ -1,7 +1,7 @@
 <?php
 class Validate
 {
-    private $_passed=true, $_errors = [], $_db = null;
+    private $_passed = true, $_errors = [], $_db = null;
     public function __construct()
     {
         $this->_db = Database::getInstance();
@@ -9,12 +9,11 @@ class Validate
     public function check($source, $items = [])
     {
         $this->_errors = [];
-        
         foreach ($items as $item => $rules) {
             $item = Input::sanatize($item);
             $display = $rules['display'];
             foreach ($rules as $rule => $rule_value) {
-                $value = Input::sanatize(trim($source[$item])); //Extracting email($item) from source $_POST
+                $value = Input::sanatize(trim($source[$item]));
                 if ($rule === "required" && empty($value)) {
                     $this->addError(["{$display} must be minimum of {$rule_value} characters", $item]);
                 } else if (!empty($value)) {
@@ -22,7 +21,6 @@ class Validate
                         case 'min':
                             if (strlen($value) < $rule_value) {
                                 $this->addError(["{$display} must be minimum of {$rule_value} characters", $item]);
-                              
                             }
                             break;
                         case 'max':
@@ -31,30 +29,23 @@ class Validate
                             }
                             break;
                         case 'matches':
-                            if($value!=$source[$rule_value])
-                            {
-                                $matchDisplay=$items[$rule_value]['display'];
-                                $this->addError(["{$matchDisplay} and {$display} must match",$item]);
+                            if ($value != $source[$rule_value]) {
+                                $matchDisplay = $items[$rule_value]['display'];
+                                $this->addError(["{$matchDisplay} and {$display} must match", $item]);
                             }
                             break;
                         case 'unique':
-                            $check=$this->_db->query("SELECT {$item} FROM {$rule_value} WHERE {$item}=?",[$value]);
-                            if($check->count())
-                            {
-                                $this->addError(["Account  already exists this {$display}",$item]);
+                            $check = $this->_db->query("SELECT {$item} FROM {$rule_value} WHERE {$item}=?", [$value]);
+                            if ($check->count()) {
+                                $this->addError(["Account  already exists this {$display}", $item]);
                             }
                             break;
-
                     }
-                   
                 }
             }
-            
         }
-        if(empty($this->_errors))
-        {
-            
-            $this->_passed=true;
+        if (empty($this->_errors)) {
+            $this->_passed = true;
         }
         return $this;
     }
@@ -65,7 +56,6 @@ class Validate
             $this->_passed = true;
         } else {
             $this->_passed = false;
-          
         }
     }
     public function error()
@@ -74,31 +64,21 @@ class Validate
     }
     public function passed()
     {
-        
         return $this->_passed;
     }
     public function displayErrors()
     {
-
-        if(!empty($this->_errors))
-        {
-        
-        foreach($this->_errors as $error)
-        {
-            if(is_array($error))
-            {
-            $html=$error[0];
-           // $html.='<script>jQuery("document").ready(function(){jQuery("#'.$error[1].'").parent().closest("div").addClass("has-error");});</script>';
+        if (!empty($this->_errors)) {
+            foreach ($this->_errors as $error) {
+                if (is_array($error)) {
+                    $html = $error[0];
+                } else {
+                    $html = $error;
+                }
+                break;
             }
-            else{
-                $html=$error;
-            }
-        break;
-        }
-        }
-        else
-        {
-            $html="";
+        } else {
+            $html = "";
         }
         return $html;
     }

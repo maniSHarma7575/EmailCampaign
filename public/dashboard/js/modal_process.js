@@ -3,10 +3,11 @@ $(document).ready(function() {
         var useremail = $('#subscriberemail').val();
         var username = $('#subscribername').val();
         var usercategory = $('#subscribercategory').val();
+
         if (useremail != '') {
             $.ajax({
                 type: "POST",
-                url: "../Subscriber/add",
+                url: "/EmailCampaign/Subscriber/add",
                 data: 'name=' + username + '&email=' + useremail + '&category=' + usercategory,
                 success: function(message) {
                     if (message == 'ok') {
