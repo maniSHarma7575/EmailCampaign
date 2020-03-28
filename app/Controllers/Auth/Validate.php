@@ -15,8 +15,13 @@ class Validate
             foreach ($rules as $rule => $rule_value) {
                 $value = Input::sanatize(trim($source[$item]));
                 if ($rule === "required" && empty($value)) {
-                    $this->addError(["{$display} must be minimum of {$rule_value} characters", $item]);
-                } else if (!empty($value)) {
+                    $this->addError(["{$display} is mandatory field", $item]);
+                }
+                else if($rule==='validEmail' && !filter_var($value,FILTER_VALIDATE_EMAIL))
+                {
+                    $this->addError(["Please Enter a valid {$display}", $item]);
+                } 
+                else if (!empty($value)) {
                     switch ($rule) {
                         case 'min':
                             if (strlen($value) < $rule_value) {

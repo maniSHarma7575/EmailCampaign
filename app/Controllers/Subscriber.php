@@ -36,7 +36,8 @@ class Subscriber extends Controller
                     'display' => 'Email',
                     'required' => true,
                     'unique' => 'subscribers',
-                    'max' => 150
+                    'max' => 150,
+                    'validEmail'=>true
                 ],
                 'category' => [
                     'display' => 'Category',
@@ -66,5 +67,45 @@ class Subscriber extends Controller
             $subscriber = $this->SubscribersModel->deleteSubscriber($email);
         }
         Router::redirect('Dashboard/index');
+    }
+    public function editAction()
+    {
+        if (!Session::exists(CURRENT_USER_SESSION_NAME)) {
+            Router::redirect('');
+        }
+        $validation = new Validate();
+        $posted_value = ['name' => '', 'email' => '', 'category' => ''];
+        if ($_POST) {
+            $posted_value = postedValues($_POST);
+            $validation->check($_POST, [
+                'name' => [
+                    'display' => 'Name',
+                    'required' => true,
+                    'min' => 3,
+                    'max' => 25
+                ],
+                'email' => [
+                    'display' => 'Email',
+                    'required' => true,
+                    'max' => 150,
+                    'validEmail'=>true
+                ],
+                'category' => [
+                    'display' => 'Category',
+                    'required' => true,
+
+                ]
+            ]);
+            if ($validation->passed()) {
+                $newUser = new Subscribers();
+                $newUser->editSubscriber($_POST);
+                $status = "ok";
+                echo $status;
+                die;
+            }
+        }
+        $status = $validation->displayErrors();
+        echo $status;
+        die;
     }
 }

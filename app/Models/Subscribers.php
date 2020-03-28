@@ -41,4 +41,10 @@ class Subscribers extends Model
     {
         return $this->findFirst(['conditions' => 'email= ?', 'bind' => [$email]]);
     }
+    public function editSubscriber($params)
+    {
+        $par = $this->assign($params);
+        $par['subemail']=$params['subemail'];
+        return $this->updateSubscriber($par);
+    }
 }

@@ -16,7 +16,7 @@ define('REMEMBER_ME_COOKIE_EXPIRY', 304800);
 
 define('GOOGLE_CLIENT_ID', '1090694937783-84ii1kiifhapjrfn4ski3s6q4dn97ds3.apps.googleusercontent.com');
 define('GOOGLE_CLIENT_SECRET', '-HXWJ0aS0q-CDRD88_08hnjI');
-define('GOOGLE_REDIRECT_URL', 'http://localhost/EmailCampaign/user/login');
+define('GOOGLE_REDIRECT_URL', 'http://ec2-3-6-171-185.ap-south-1.compute.amazonaws.com/user/login');
 
 define('SES_HOST', 'email-smtp.ap-south-1.amazonaws.com');
 define('SESUSERNAME', 'AKIA6B5RCAR6CRP7TQCI');
@@ -25,7 +25,7 @@ define('SESSECURE', 'tls');
 define('SESPORT', 587);
 
 define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTPUSERNAME', 'sharma.manish7575@gmail.com');
+define('SMTPUSERNAME', 'componentapp3@gmail.com');
 define('SMTPPASSWORD', 'M@ths7575');
 define('SMTPSECURE', 'ssl');
 define('SMTPPORT', 465);

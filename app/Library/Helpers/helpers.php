@@ -8,7 +8,7 @@ function dnd($data)
 }
 function controllersStrings()
 {
-    return array('Home','ForgotPassword','User','Verification','Campaign','Dashboard','Subscriber');
+    return array('Home','ForgotPassword','User','Verification','Campaign','Dashboard','Subscriber','Category');
 }
 function sanitize($dirty)
 {
@@ -128,4 +128,14 @@ function emailTemplate()
   </tr>
 </table>';
     return $template;
+}
+function categoryList()
+{
+    $category=new Categories();
+    $results=$category->findAll();
+    foreach($results as $result)
+    {
+        $categories[]=$result->name;
+    }
+    return $categories;
 }

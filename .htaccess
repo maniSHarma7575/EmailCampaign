@@ -6,5 +6,8 @@
    RewriteCond %{REQUEST_FILENAME} !-d
    RewriteCond $1 !^(public|Config)
    RewriteRule ^(.+)$ index.php/$1 [L]
+   ErrorDocument 403 /EmailCampaign/Home/error
+   ErrorDocument 404 /EmailCampaign/Home/error
 
 </IfModule>
+Options All -Indexes

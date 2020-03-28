@@ -75,8 +75,12 @@ class Campaign extends Controller
                 } else if ($name_of_uploaded_file != '') {
                     $errors .= 'Something went wrong please try again latter';
                 }
+                $reception = $this->CampaignsModel->subscriberList();
+                if(empty($reception))
+                {
+                    $errors='No';
+                }
                 if ($errors == '') {
-                    $reception = $this->CampaignsModel->subscriberList();
                     $subject = $posted_value['subject'];
                     $name = $posted_value['name'];
                     $body = $posted_value['body'];
@@ -106,7 +110,9 @@ class Campaign extends Controller
         } else {
             $this->view->displayErrors = $validation->displayErrors();
         }
+        
         $this->view->post = $posted_value;
+        
         $this->view->render('Campaigns/create');
     }
 }

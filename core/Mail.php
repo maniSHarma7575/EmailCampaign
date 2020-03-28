@@ -55,7 +55,7 @@ class Mail
     }
     public function sendVerification($name, $email, $token, $work)
     {
-        $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
+        $this->mail->setFrom('pigeon@mailezee.com', 'Pigeon');
         $this->mail->addAddress($email, $name);
         if ($work === "verification") {
             $subject = 'Verify your account';
@@ -90,25 +90,4 @@ class Mail
         }
     }
 
-    public function sendForgotPasswordLink($name, $email, $token)
-    {
-        $this->mail->setFrom('sharma.manish7575@gmail.com', 'Pigeon');
-        $resetPassLink = 'http://localhost/EmailCampaign/ForgotPassword/reset?email=' . $email . '&token=' . $token;
-        $this->mail->addAddress($email, $name);
-        $this->mail->Subject = 'Password Update Request';
-        $this->mail->isHTML(true);
-        $mailContent = 'Dear ' . $name . ',
-        <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
-        <br/>To reset your password, visit the following link: <a href="' . $resetPassLink . '">' . $resetPassLink . '</a>
-        <br/><br/>Regards,
-        <br/>Pigeon Team';
-        $this->mail->Body = $mailContent;
-        if (!$this->mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $this->mail->ErrorInfo;
-            return false;
-        } else {
-            return true;
-        }
-    }
 }

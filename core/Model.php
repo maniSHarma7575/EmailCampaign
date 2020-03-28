@@ -118,4 +118,10 @@ class Model
         $query = "UPDATE " . $this->_table . " SET password = '" . $params['password'] . "' WHERE email = '" . $params['email'] . "'";
         $update = $this->_db->query($query);
     }
+    public function updateSubscriber($params)
+    {
+        $query = "UPDATE " . $this->_table . " SET name = '" . $params['name'] . "', email = '" . $params['email'] . "', category = '" . $params['category'] . "' WHERE email = '" . $params['subemail'] . "'";
+        $update = $this->_db->query($query);
+        return $update;
+    }
 }

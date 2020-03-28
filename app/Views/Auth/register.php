@@ -41,22 +41,22 @@
                                 <div class="form-group mt-3">
                                     <label for="exampleInputEmail1" style="color: black; font-weight:bold;">Email address</label>
                                     <span style="color:red">*</span></label>
-                                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" required="">
+                                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" required="" value="<?=$this->post['email'];?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername" style="color: black; font-weight:bold;">Username</label>
                                     <span style="color:red">*</span></label>
-                                    <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="" required="">
+                                    <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="" required="" value="<?=$this->post['name'];?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="password" style="color: black; font-weight:bold;">Password</label>
                                     <span style="color:red">*</span></label>
-                                    <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="" required="">
+                                    <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="" required="" value="<?=$this->post['password'];?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="password" style="color: black; font-weight:bold;">Confirm Password</label>
                                     <span style="color:red">*</span></label>
-                                    <input type="password" name="confirm" id="confirmpassword" class="form-control" aria-describedby="emailHelp" placeholder="" required="">
+                                    <input type="password" name="confirm" id="confirmpassword" class="form-control" aria-describedby="emailHelp" placeholder="" required="" value="<?=$this->post['confirm'];?>">
                                 </div>
                                 <?php
                                 if (!empty($this->displayErrors)) {
@@ -67,6 +67,10 @@
                                 ?>
                                 <div class="col-md-14 form-group text-center ">
                                     <button type="submit" class=" btn btn-block mybtn btn-primary ">Create Account</button>
+                                </div>
+                                <div class="col-md-14 form-group text-center ">
+                                <a class=" btn btn-block btn-outline-dark" style="color: black;" href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Fec2-3-6-171-185.ap-south-1.compute.amazonaws.com%2Fuser%2Flogin&amp;client_id=1090694937783-84ii1kiifhapjrfn4ski3s6q4dn97ds3.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;access_type=offline&amp;approval_prompt=force"><img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png">
+											Login with Google</a>
                                 </div>
                                 <div class="row mx-1 my-3">
                                     <hr class="d-inline col" style="border-top: 1px solid black;">

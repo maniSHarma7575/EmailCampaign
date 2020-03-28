@@ -3,6 +3,7 @@ $base = PROOT . "public/dashboard/";
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <?= $this->content('head'); ?>
     <title><?= $this->siteTitle() ?></title>
@@ -42,11 +43,16 @@ $base = PROOT . "public/dashboard/";
         }
     </style>
 </head>
+
 <body>
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" style="background:#58a0c3;">
             <div class="p-4 pt-5">
-                <a href="#" class="img logo rounded-circle mb-5" style="background-image: url('<?= $base ?>img/logo.png');"></a>
+                <a href="#" class="img logo rounded-circle mb-3" style="background-image: url('<?= $base ?>img/logo.png');"></a>
+                <div class="mb-3">
+                    <h6 style='font-weight:bold; text-align:center'>Welcome</h6>
+                    <h4 style='font-weight:bold;color:white; text-align:center;'><?= $_SESSION['name'] ?></h4>
+                </div>
                 <ul class="list-unstyled components mb-5">
                     <li>
                         <a href="<?= PROOT ?>dashboard/" style="color:black; font-weight:bold;">Home</a>
@@ -116,21 +122,43 @@ $base = PROOT . "public/dashboard/";
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-envelope" style="color: blue;"></i> </span>
                                             </div>
-                                            <input type="email" class="form-control" id='subscriberemail' name='subscriberemail' type="email" required>
+                                            <input type="email" class="form-control" id='subscriberemail' name='subscriberemail' type="email" required="">
                                         </div>
                                         <h6 class="text-left">Name*</h6>
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-user" style="color: blue;"></i> </span>
                                             </div>
-                                            <input type="text" class="form-control" id='subscribername' name='subscribername' type="text" required>
+                                            <input type="text" class="form-control" id='subscribername' name='subscribername' type="text" required="">
                                         </div>
                                         <h6 class="text-left">Category*</h6>
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-list-alt" style="color: blue;"></i> </span>
                                             </div>
-                                            <input type="text" class="form-control" id='subscribercategory' name='subscribercategory' type="text" required>
+                                            <select class="form-control selectpicker" id="subscribercategory" name="subscribercategory">
+                                                <?php
+                                                $categories = categoryList();
+                                                foreach ($categories as $category) {
+                                                ?>
+                                                    <option value="<?= $category ?>"><?= $category ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <p class="text-left"><a style="color:darkblue;border-radius:5px;" onclick="myCategory();"><i class="pr-2 fa fa-plus"></i>Add New Category</a></p>
+                                        <div style="display:none" id="categoryform">
+                                            <form class="mt-2">
+                                                <div class="row">
+                                                    <div class="form-group input-group col-9">
+
+                                                        <input type="text" class="form-control" id='newcategory' name='newcategory' type="text" required="" placeholder="Category">
+
+                                                    </div>
+                                                    <div class="form-group col-3">
+                                                        <button type="button" id="category" style="height:38px;background:green;color:white;" class="btn btn-block"><i class="pr-2 fa fa-plus" style="vertical-align:top;text-align:center"></i></button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="form-group mt-2">
                                             <button type="button" id="submit" class="btn btn-primary btn-block">Add</button>
@@ -180,5 +208,7 @@ $base = PROOT . "public/dashboard/";
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="<?= $base ?>js/modal_process.js"></script>
     <script src="<?= $base ?>js/campaign_search.js"></script>
+
 </body>
+
 </html>

@@ -32,11 +32,20 @@ class User extends Controller
                 $user = $this->UsersModel->findByEmail($_POST['email']);
                 if ($user && $user->is_verified == 1 && password_verify(Input::get('password'), $user->password)) {
                     $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
+                    
                     $user->login($remember);
                     Session::set('email', $_POST['email']);
+                    Session::set('name',$user->name);
+                   
                     Router::redirect('Dashboard/');
-                } elseif ($user && $user->is_verified == 0) {
-                    $validation->addError('Please verify your email address');
+                }
+                
+                elseif($user && empty($user->name)) 
+                {
+                    $validation->addError("Account dosen't exists.");
+                }
+                elseif ($user && $user->is_verified == 0) {
+                    $validation->addError('Please verify your email address.');
                 } else {
                     $validation->addError("Email or Password incorrect");
                 }
@@ -75,6 +84,7 @@ class User extends Controller
                 $user = $this->UsersModel->findByEmail($gpUserData['email']);
                 $user->login(false);
                 Session::set('email', $gpUserData['email']);
+                Session::set('name',$gpUserData['name']);
                 Router::redirect('Dashboard/');
             }
         } else {

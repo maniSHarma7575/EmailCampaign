@@ -3,6 +3,7 @@ $defbase = PROOT . "public/dashboard/";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Pigeon</title>
@@ -20,8 +21,17 @@ $defbase = PROOT . "public/dashboard/";
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
   <div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
     <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
       <div class="container">
         <div class="row">
@@ -38,12 +48,15 @@ $defbase = PROOT . "public/dashboard/";
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="<?= PROOT ?>" class="nav-link">Home</a></li>
-                <li><a class="btn btn-outline-primary mr-3" href="<?= PROOT ?>user/login" class="nav-link">Login</a></li>
+                <li><a class="btn btn-outline-primary mr-2" href="<?= PROOT ?>user/login" class="nav-link">Login</a></li>
                 <li><a class="btn btn-primary" href="<?= PROOT ?>user/register" class="nav-link">Register</a></li>
               </ul>
             </nav>
           </div>
           <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+            <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
           </div>
         </div>
       </div>
@@ -59,8 +72,6 @@ $defbase = PROOT . "public/dashboard/";
   <script src="<?= $defbase ?>vendoor/aos/aos.js"></script>
   <script src="<?= $defbase ?>vendoor/owlcarousel/owl.carousel.min.js"></script>
   <script src="<?= $defbase ?>jss/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>

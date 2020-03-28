@@ -111,25 +111,107 @@ if (empty($this->campaigns)) {
         <td><?= ucwords($subscriber->name) ?></td>
         <td><?= $subscriber->email ?></td>
         <td><?= ucwords($subscriber->category) ?></td>
-        <td><a type="button" data-toggle="modal" data-target="#deleteModal<?= $j ?>" class="delete" title="Delete"><i class="fa fa-trash-o"></i></a>
-          <div class="modal fade" id="deleteModal<?= $j ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <td>
+          <div class="row">
+            <div class="col-6">
+              <a type="button" style="text-align:left;" data-toggle="modal" data-target="#deleteModal<?= $j ?>" class="delete" title="Delete"><i class="fa fa-trash-o"></i></a>
+              <div class="modal fade" id="deleteModal<?= $j ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete this?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger">
+                        <a href="<?= PROOT ?>subscriber/delete?email=<?= $subscriber->email; ?>" style="color: white;">Yes</a>
+                      </button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <a type="button" style="text-align:right;" data-toggle="modal" data-target="#EditModal<?= $j ?>" title="Edit"><i class="fa fa-edit"></i></a>
+              <div class="modal fade " id="EditModal<?= $j ?>" role="dialog" style="border-radius:25px;">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="ModalLabel2" style="color:black;font-weight:bold;">Edit Subscriber Information</h5>
+                      <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <div class="text-center">
+                            <form class="mt-2" id="subinfoForm">
+                              <fieldset>
+                                <input type="hidden" class="form-control" name='subEmail' id='subEmail' value="<?= $subscriber->email ?>" />
+                                <h6 class="text-left">Email Address*</h6>
+                                <div class="form-group input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope" style="color: blue;"></i> </span>
+                                  </div>
+                                  <input type="email" class="form-control" id='subscriberemail' name='subscriberemail' type="email" value="<?= $subscriber->email ?>" required="">
+                                </div>
+                                <h6 class="text-left">Name*</h6>
+                                <div class="form-group input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user" style="color: blue;"></i> </span>
+                                  </div>
+                                  <input type="text" class="form-control" id='subscribername' name='subscribername' type="text" value="<?= ucwords($subscriber->name) ?>" required="">
+                                </div>
+                                <h6 class="text-left">Category*</h6>
+                                <div class="form-group input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-list-alt" style="color: blue;"></i> </span>
+                                  </div>
+                                  <select class="form-control selectpicker" id="subscribercategory" name="subscribercategory">
+                                    <option value="<?= ucwords($subscriber->category) ?>"><?= ucwords($subscriber->category) ?></option>
+                                    <?php
+                                    $categories = categoryList();
+                                    foreach ($categories as $category) {
+                                    ?>
+                                      <option value="<?= $category ?>"><?= $category ?></option>
+                                    <?php } ?>
+                                  </select>
+                                </div>
+                                <p class="text-left"><a style="color:darkblue;border-radius:5px;" onclick="myCategory();"><i class="pr-2 fa fa-plus"></i>Add New Category</a></p>
+                                <div style="display:none" id="categoryform">
+                                  <form class="mt-2">
+                                    <div class="row">
+                                      <div class="form-group input-group col-9">
 
-            <div class="modal-dialog " role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete this?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger">
-                    <a href="<?= PROOT ?>subscriber/delete?email=<?= $subscriber->email; ?>" style="color: white;">Yes</a>
-                  </button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                                        <input type="text" class="form-control" id='newcategory' name='newcategory' type="text" required="" placeholder="Category">
+
+                                      </div>
+                                      <div class="form-group col-3">
+                                        <button type="button" id="category" style="height:38px;background:green;color:white;" class="btn btn-block"><i class="pr-2 fa fa-plus" style="vertical-align:top;text-align:center"></i></button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="form-group mt-2">
+                                  <button type="button" id="submitEdit" class="btn btn-primary btn-block">Update</button>
+                                </div>
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
