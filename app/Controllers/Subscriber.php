@@ -24,6 +24,7 @@ class Subscriber extends Controller
         $validation = new Validate();
         $posted_value = ['name' => '', 'email' => '', 'category' => ''];
         if ($_POST) {
+            
             $posted_value = postedValues($_POST);
             $validation->check($_POST, [
                 'name' => [

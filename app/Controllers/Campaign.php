@@ -18,14 +18,16 @@ class Campaign extends Controller
     }
     public function launchAction()
     {
+        
         if (!Session::exists(CURRENT_USER_SESSION_NAME)) {
             Router::redirect('');
         }
         $errors = '';
         $serviceType = $_GET['service'];
         $validation = new Validate();
-        $posted_value = ['name' => '', 'subject' => '', 'body' => ''];
+        $posted_value = ['name' => '', 'subject' => '', 'body' => '','category'=>''];
         if ($_POST) {
+            
             $posted_value = postedValues($_POST);
             $validation->check($_POST, [
                 'name' => [
@@ -45,7 +47,14 @@ class Campaign extends Controller
                     'max' => 1500,
                     'min' => 3
 
-                ]
+                ],
+                'category'=>[
+                    'display'=> 'Category',
+                    'required'=>true,
+                    'max'=>255,
+                    'min'=>3
+
+                ],
             ]);
             $name_of_uploaded_file =
                 basename($_FILES['uploaded_file']['name']);
@@ -75,7 +84,9 @@ class Campaign extends Controller
                 } else if ($name_of_uploaded_file != '') {
                     $errors .= 'Something went wrong please try again latter';
                 }
-                $reception = $this->CampaignsModel->subscriberList();
+                
+                $reception = $this->CampaignsModel->subscriberList($_POST['category']);
+                dnd($reception);
                 if(empty($reception))
                 {
                     $errors='No';

@@ -21,11 +21,11 @@ class Campaigns extends Model
     {
         return $this->find($params);
     }
-    public function subscriberList()
+    public function subscriberList($params)
     {
         $reception = [];
         $subscribers = new Subscribers();
-        $subscribersData = $subscribers->findAll(['order' => 'name']);
+        $subscribersData = $subscribers->findAll( ['conditions' => 'category = ?', 'bind' => $params['category']]);
         foreach ($subscribersData as $subscriber) {
             $reception[] = $subscriber->email;
         }

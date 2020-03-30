@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $("button#submit").click(function() {
-        var useremail = $('#subscriberemail').val();
-        var username = $('#subscribername').val();
-        var usercategory = $('#subscribercategory').val();
+        var useremail = $('#addsubscriberemail').val();
+        var username = $('#addsubscribername').val();
+        var usercategory = $('#addsubscribercategory').val();
 
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!useremail.match(mailformat)) {
@@ -43,8 +43,8 @@ $(document).ready(function() {
         }
     });
 
-    $("button#category").click(function() {
-        var category = $('#newcategory').val();
+    $("button#addcategory").click(function() {
+        var category = $('#addnewcategory').val();
 
         if (category != '') {
             $.ajax({
@@ -54,10 +54,10 @@ $(document).ready(function() {
                 success: function(message) {
                     if (message == 'ok') {
                         swal("Congrats!", category + " added to list", "success").then(function() {
-                            $('#subscribercategory').prepend(`<option value="${category}"> 
+                            $('#addsubscribercategory').prepend(`<option value="${category}"> 
                             ${category} 
                        </option>`);
-                            var x = document.getElementById("categoryform");
+                            var x = document.getElementById("addcategoryform");
                             if (x.style.display === "none") {
                                 x.style.display = "block";
                             } else {
@@ -67,8 +67,8 @@ $(document).ready(function() {
 
                         });
                     } else {
-                        swal("Oops!", "Category already added", "error").then(function() {
-                            var x = document.getElementById("categoryform");
+                        swal("Oops!", message, "error").then(function() {
+                            var x = document.getElementById("addcategoryform");
                             if (x.style.display === "none") {
                                 x.style.display = "block";
                             } else {
@@ -87,10 +87,17 @@ $(document).ready(function() {
     });
 
     $("button#submitEdit").click(function() {
-        var useremail = $('#subscriberemail').val();
-        var username = $('#subscribername').val();
-        var usercategory = $('#subscribercategory').val();
-        var subemail = $('#subEmail').val();
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        var ID = data[0];
+        var subemail = data[2];
+        var useremail = $('#subscriberemail' + ID).val();
+        var username = $('#subscribername' + ID).val();
+        var usercategory = $('#subscribercategory' + ID).val();
+
 
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!useremail.match(mailformat)) {
@@ -128,6 +135,55 @@ $(document).ready(function() {
             } else {
                 sweetAlert("Oops...", "Category is  required", "error");
             }
+        }
+    });
+
+    $("button#category").click(function() {
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        var ID = data[0];
+        var category = $('#newcategory' + ID).val();
+
+        if (category != '') {
+            $.ajax({
+                type: "POST",
+                url: "/EmailCampaign/Category/add",
+                data: 'category=' + category,
+                success: function(message) {
+                    if (message == 'ok') {
+                        swal("Congrats!", category + " added to list", "success").then(function() {
+                            $('#subscribercategory' + ID).prepend(`<option value="${category}"> 
+                            ${category} 
+                       </option>`);
+                            var x = document.getElementById("categoryform" + ID);
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+
+
+                        });
+                    } else {
+                        swal("Oops!", message, "error").then(function() {
+                            var x = document.getElementById("categoryform" + ID);
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        });
+                    }
+                },
+                error: function() {
+                    swal("Oops!", "Something went wrong! Please try again", "error");
+                }
+            });
+        } else {
+            sweetAlert("Oops...", "Category is required", "error");
         }
     });
 });

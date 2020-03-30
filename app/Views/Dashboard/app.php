@@ -143,7 +143,7 @@ if (empty($this->campaigns)) {
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="ModalLabel2" style="color:black;font-weight:bold;">Edit Subscriber Information</h5>
+                      <h5 class="modal-title"  style="color:black;font-weight:bold;">Edit Subscriber Information</h5>
                       <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -152,29 +152,29 @@ if (empty($this->campaigns)) {
                       <div class="panel panel-default">
                         <div class="panel-body">
                           <div class="text-center">
-                            <form class="mt-2" id="subinfoForm">
+                            <form class="mt-2" >
                               <fieldset>
-                                <input type="hidden" class="form-control" name='subEmail' id='subEmail' value="<?= $subscriber->email ?>" />
+                                <input type="hidden" class="form-control" name='subEmail<?= $x ?>' id='subEmail<?= $x ?>' value="<?= $subscriber->email ?>" />
                                 <h6 class="text-left">Email Address*</h6>
                                 <div class="form-group input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-envelope" style="color: blue;"></i> </span>
                                   </div>
-                                  <input type="email" class="form-control" id='subscriberemail' name='subscriberemail' type="email" value="<?= $subscriber->email ?>" required="">
+                                  <input type="email" class="form-control" id='subscriberemail<?= $x ?>' name='subscriberemail<?= $x ?>' type="email" value="<?= $subscriber->email ?>" required="">
                                 </div>
                                 <h6 class="text-left">Name*</h6>
                                 <div class="form-group input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-user" style="color: blue;"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id='subscribername' name='subscribername' type="text" value="<?= ucwords($subscriber->name) ?>" required="">
+                                  <input type="text" class="form-control" id='subscribername<?= $x ?>' name='subscribername<?= $x ?>' type="text" value="<?= ucwords($subscriber->name) ?>" required="">
                                 </div>
                                 <h6 class="text-left">Category*</h6>
                                 <div class="form-group input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-list-alt" style="color: blue;"></i> </span>
                                   </div>
-                                  <select class="form-control selectpicker" id="subscribercategory" name="subscribercategory">
+                                  <select class="form-control selectpicker" id="subscribercategory<?= $x ?>" name="subscribercategory<?= $x ?>">
                                     <option value="<?= ucwords($subscriber->category) ?>"><?= ucwords($subscriber->category) ?></option>
                                     <?php
                                     $categories = categoryList();
@@ -184,13 +184,13 @@ if (empty($this->campaigns)) {
                                     <?php } ?>
                                   </select>
                                 </div>
-                                <p class="text-left"><a style="color:darkblue;border-radius:5px;" onclick="myCategory();"><i class="pr-2 fa fa-plus"></i>Add New Category</a></p>
-                                <div style="display:none" id="categoryform">
+                                <p class="text-left"><a style="color:darkblue;border-radius:5px;" onclick="displayCategory();"><i class="pr-2 fa fa-plus"></i>Add New Category</a></p>
+                                <div style="display:none" id="categoryform<?= $x ?>">
                                   <form class="mt-2">
                                     <div class="row">
                                       <div class="form-group input-group col-9">
 
-                                        <input type="text" class="form-control" id='newcategory' name='newcategory' type="text" required="" placeholder="Category">
+                                        <input type="text" class="form-control" id='newcategory<?= $x ?>' name='newcategory<?= $x ?>' type="text" required="" placeholder="Category">
 
                                       </div>
                                       <div class="form-group col-3">

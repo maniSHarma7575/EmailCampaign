@@ -39,7 +39,22 @@ function myFunction() {
 }
 
 function myCategory() {
-    var x = document.getElementById("categoryform");
+    var x = document.getElementById("addcategoryform");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function displayInfo() {
+    swal("Important Note!", "You can't use this service without AmazonSES email verification, For using this service contact Pigeon team.").then(function() {
+        window.location = "http://localhost/EmailCampaign/campaign/launch?service=amazonses";
+    });
+}
+
+function displayCategory(ID) {
+    var x = document.getElementById("categoryform" + ID);
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
